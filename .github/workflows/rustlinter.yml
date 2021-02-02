@@ -1,0 +1,40 @@
+name: Rust Linter
+on: 
+  push:
+    paths:
+      - "**.rs"
+defaults:
+  run:
+    working-directory: backend
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Check out Git repository
+       uses: actions/checkout@v1
+     - name: "Change directory"
+       run: |
+          ls
+          pwd
+     - name: "Set working directory"
+       working-directory: backend
+       run: |
+         ls
+     - uses: actions-rs/toolchain@v1
+       with:
+          toolchain: stable
+     - name: build
+       uses: marcopolo/cargo@master
+       with:
+          command:  build
+          working-directory: backend
+     - name: test
+       uses: marcopolo/cargo@master
+       with:
+          command: test
+          working-directory: backend
+     - name: lint
+       uses: actions-rs/clippy-check@v1
+       with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --manifest-path backend/Cargo.toml
