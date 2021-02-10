@@ -4,9 +4,6 @@ on:
   pull_request:
     paths: 
       - "**.py"
-  push:
-    paths:
-      - "**.py"
 defaults:
   run:
     working-directory: backend/python/
