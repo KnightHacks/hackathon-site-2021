@@ -1,3 +1,7 @@
-flask
-flask_cors
-requests
+jsonschema
+flasgger
+Flask
+Flask-Cors
+flask-mongoengine
+pyyaml
+python-dateutil
