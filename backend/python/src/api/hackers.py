@@ -105,7 +105,7 @@ def delete_hacker(username: str):
     hacker = Hacker.objects(username=username)
 
     if not hacker:
-        raise NotFound("The specified hacker does not exist in the database. Get your shit together")
+        raise NotFound("The specified hacker does not exist in the database.")
     hacker.delete()
 
     res = {
