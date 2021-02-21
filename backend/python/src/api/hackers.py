@@ -106,3 +106,42 @@ def get_user_search(username: str):
     }
 
     return res, 200
+
+@hackers_blueprint.route("/hackers/<username>/", methods=["DELETE"])
+def delete_hacker(username: str):
+    """
+    Deletes an existing Hacker.
+    ---
+    tags:
+        - hacker
+    summary: Delete Hacker
+    parameters:
+        - id: username
+          in: path
+          description: User name
+          required: true
+          schema:
+            type: string
+    responses:
+        201:
+            description: OK
+        400:
+            description: Bad request.
+        404:
+            description: Specified hacker does not exist.
+        5XX:
+            description: Unexpected error.
+    """
+
+    hacker = Hacker.objects(username=username)
+
+    if not hacker:
+        raise NotFound("The specified hacker does not exist in the database.")
+    hacker.delete()
+
+    res = {
+        "status": "success",
+        "message": "Hacker was deleted!"
+    }
+
+    return res, 201
