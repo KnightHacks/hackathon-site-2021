@@ -76,6 +76,39 @@ def create_hacker():
     return res, 201
 
 
+@hackers_blueprint.route("/hackers/<username>/", methods=["GET"])
+def get_user_search(username: str):
+    """
+    Retrieves a hacker's profile using their username.
+    ---
+    tags:
+        - hacker
+    summary: Gets a hacker's profile from their username.
+    parameters:
+        - name: username
+          in: path
+          type: string
+          description: The hacker's profile.
+          required: true
+    responses:
+        200:
+            description: OK
+
+    """
+    hacker = Hacker.objects(username=username).first()
+    if not hacker:
+        raise NotFound()
+
+    res = {
+        "Hacker Profile": hacker.hacker_profile,
+        "User Name": hacker.username,
+        "message": "Successfully reached profile.",
+        "status": "success"
+    }
+
+    return res, 200
+
+
 @hackers_blueprint.route("/hackers/<username>/", methods=["DELETE"])
 def delete_hacker(username: str):
     """
