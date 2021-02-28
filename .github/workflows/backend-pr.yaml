@@ -1,4 +1,4 @@
-name: Python Linter
+name: Python Linter and Tester
 
 on: 
   pull_request:
