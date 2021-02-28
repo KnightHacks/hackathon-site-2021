@@ -45,5 +45,10 @@ jobs:
         if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
     - name: Test the app
       run: |
-        python -m coverage run --source=src -m src test
-
+        coverage run --source=src -m src test
+        coverage xml
+    - name: Comment Coverage
+      uses: 5monkeys/cobertura-action@master
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        minimum_coverage: 75
