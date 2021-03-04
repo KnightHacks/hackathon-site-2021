@@ -50,5 +50,6 @@ jobs:
     - name: Comment Coverage
       uses: 5monkeys/cobertura-action@master
       with:
+        path: backend/python/coverage.xml
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         minimum_coverage: 75
