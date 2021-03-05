@@ -6,3 +6,4 @@ venv
 junit
 htmlcov
 coverage.*
+backend/python/Dockerfile.backend.dev
