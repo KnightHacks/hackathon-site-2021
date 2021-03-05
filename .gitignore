@@ -1,4 +1,9 @@
 node_modules/
 __pycache__
 venv
+.coverage
+.pytest_cache
+junit
+htmlcov
+coverage.*
 backend/python/Dockerfile.backend.dev

@@ -24,6 +24,14 @@ class BaseConfig:
     LOGGING_LOCATION = "flask-base.log"
     LOGGING_LEVEL = logging.DEBUG
     MONGODB_HOST = os.getenv("MONGO_URI", "mongodb://localhost:27017/test")
+    SWAGGER = {
+        "specs": [
+            {
+                "endpoint": "apispec",
+                "route": "/apispec.json"
+            }
+        ]
+    }
     CLUBEVENT_APIKEY = os.getenv("CLUBEVENT_APIKEY")
     TOKEN_EMAIL_EXPIRATION_DAYS = 1
     TOKEN_EMAIL_EXPIRATION_SECONDS = 0
@@ -53,7 +61,10 @@ class TestingConfig(BaseConfig):
     """Testing Configuration"""
     DEBUG = True
     TESTING = True
+    CLUBEVENT_APIKEY = "testing"
     BCRYPT_LOG_ROUNDS = 4
+    SECRET_KEY = "pluto is a planet"
+    MAIL_SUPPRESS_SEND = False
 
 
 class ProductionConfig(BaseConfig):
