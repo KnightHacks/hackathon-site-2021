@@ -14,10 +14,11 @@
 """
 from flask import Blueprint, request
 from mongoengine.errors import NotUniqueError, ValidationError
-from werkzeug.exceptions import BadRequest, Conflict, NotFound
+from werkzeug.exceptions import BadRequest, Conflict, NotFound, Unauthorized
 import dateutil.parser
 from src.models.hacker import Hacker
 from src.models.user import ROLES
+from src.common.decorators import authenticate, privileges
 
 
 hackers_blueprint = Blueprint("hackers", __name__)
@@ -118,7 +119,9 @@ def get_user_search(username: str):
 
 
 @hackers_blueprint.route("/hackers/<username>/", methods=["DELETE"])
-def delete_hacker(username: str):
+@authenticate
+@privileges(ROLES.HACKER | ROLES.MOD | ROLES.ADMIN)
+def delete_hacker(loggedin_user, username: str):
     """
     Deletes an existing Hacker.
     ---
@@ -137,11 +140,17 @@ def delete_hacker(username: str):
             description: OK
         400:
             description: Bad request.
+        401:
+            description: Unauthorized
         404:
             description: Specified hacker does not exist.
         5XX:
             description: Unexpected error.
     """
+
+    if (not(ROLES(loggedin_user.roles) & (ROLES.MOD | ROLES.ADMIN))
+            and loggedin_user.username != username):
+        raise Unauthorized("Hacker can only delete their own account!")
 
     hacker = Hacker.objects(username=username)
 
@@ -195,10 +204,22 @@ def update_user_profile_settings(username: str):
     if not hacker:
         raise NotFound()
 
+    if update.get("email") != hacker.email:
+        update["email_verification"] = False
+        newemail = True
+    else:
+        newemail = False
+
     try:
         hacker.update(**update)
     except ValidationError:
         raise BadRequest()
+
+    """Send Verification Email if New Email"""
+    if newemail:
+        token = hacker.encode_email_token()
+        from src.common.mail import send_verification_email
+        send_verification_email(hacker, token)
 
     res = {
         "status": "success",

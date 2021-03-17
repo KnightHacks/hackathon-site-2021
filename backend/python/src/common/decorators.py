@@ -8,8 +8,9 @@
         privileges(roles)
 
 """
+from flask import request, current_app
 from functools import wraps
-from werkzeug.exceptions import Unauthorized, Forbidden
+from werkzeug.exceptions import Forbidden, Unauthorized, NotFound
 from src.models.user import User, ROLES
 
 
@@ -22,18 +23,46 @@ def privileges(roles):
     """
     def decorator(f):
         @wraps(f)
-        def decorated_function(username, *args, **kwargs):
-            user = User.objects(username=username).only("roles").first()
-
-            if not user:
-                raise Unauthorized()
-
+        def decorated_function(user, *args, **kwargs):
             user_roles = ROLES(user.roles)
 
-            # Check if the user has the required permission(s)
+            """ Check if the user has the required permission(s) """
             if not(user_roles & roles):
                 raise Forbidden()
 
-            return f(username, *args, **kwargs)
+            return f(user, *args, **kwargs)
         return decorated_function
+    return decorator
+
+
+def authenticate(f):
+    """
+    Authenticated the user using a header.
+    """
+
+    doc = getattr(f, "__doc__")
+    if doc:
+        setattr(f, "__doc__", doc + """security:
+        - CookieAuth: []""")
+
+    @wraps(f)
+    def decorator(*args, **kwargs):
+        token = None
+
+        if request.cookies.get("sid"):
+            token = request.cookies.get("sid")
+        elif current_app.config.get("TESTING"):
+            token = request.headers.get("sid")
+
+        if not token:
+            raise Unauthorized("User is not signed in!")
+
+        data = User.decode_auth_token(token)
+        user = User.objects(username=data).first()
+
+        if not user:
+            raise NotFound()
+
+        return f(user, *args, **kwargs)
+
     return decorator
