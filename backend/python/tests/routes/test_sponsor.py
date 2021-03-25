@@ -8,7 +8,7 @@ from src.models.user import ROLES
 class TestSponsorsBlueprint(BaseTestCase):
     """Tests for the Sponsors Endpoints"""
 
-    """create_sponsor (worked on by Conroy)"""
+    """create_sponsor (worked on by Conroy) """
 
     def test_create_sponsor(self):
         
