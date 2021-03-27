@@ -18,8 +18,10 @@
 import os
 from flask.cli import FlaskGroup
 from src import app
+
 try:
     import pytest
+
     test_present = True
 except ImportError:
     test_present = False
@@ -39,7 +41,9 @@ def test():
     if test_present:
         pytest.main(["--doctest-modules", "--junitxml=junit/test-results.xml"])
     else:
-        app.logger.error("Module PyTest is not installed! Install dev dependencies before testing!")  # noqa: E501
+        app.logger.error(
+            "Module PyTest is not installed! Install dev dependencies before testing!"
+        )  # noqa: E501
 
 
 if __name__ == "__main__":

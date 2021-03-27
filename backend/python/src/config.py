@@ -18,20 +18,14 @@ import logging
 
 class BaseConfig:
     """Base Configuration"""
+
     DEBUG = False
     TESTING = False
     LOGGING_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     LOGGING_LOCATION = "flask-base.log"
     LOGGING_LEVEL = logging.DEBUG
     MONGODB_HOST = os.getenv("MONGO_URI", "mongodb://localhost:27017/test")
-    SWAGGER = {
-        "specs": [
-            {
-                "endpoint": "apispec",
-                "route": "/apispec.json"
-            }
-        ]
-    }
+    SWAGGER = {"specs": [{"endpoint": "apispec", "route": "/apispec.json"}]}
     TOKEN_EMAIL_EXPIRATION_MINUTES = 30
     TOKEN_EMAIL_EXPIRATION_SECONDS = 0
     SECRET_KEY = os.getenv("SECRET_KEY")
@@ -52,6 +46,7 @@ class BaseConfig:
 
 class DevelopmentConfig(BaseConfig):
     """Development Configuration"""
+
     DEBUG = True
     BCRYPT_LOG_ROUNDS = 4
     MAIL_SUPPRESS_SEND = False
@@ -60,6 +55,7 @@ class DevelopmentConfig(BaseConfig):
 
 class TestingConfig(BaseConfig):
     """Testing Configuration"""
+
     DEBUG = True
     TESTING = True
     BCRYPT_LOG_ROUNDS = 4
@@ -71,4 +67,5 @@ class TestingConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     """Production Configuration"""
+
     DEBUG = False

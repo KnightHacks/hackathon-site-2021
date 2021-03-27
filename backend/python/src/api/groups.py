@@ -61,10 +61,7 @@ def create_group():
     except ValidationError:
         raise BadRequest()
 
-    res = {
-        "status": "success",
-        "message": "Group was created!"
-    }
+    res = {"status": "success", "message": "Group was created!"}
 
     return res, 201
 
@@ -114,10 +111,7 @@ def edit_group(group_name: str):
     except ValidationError:
         raise BadRequest()
 
-    res = {
-        "status": "success",
-        "message": "Group successfully updated."
-    }
+    res = {"status": "success", "message": "Group successfully updated."}
     return res, 201
 
 
@@ -144,9 +138,6 @@ def get_group(group_name: str):
     if not group:
         raise NotFound()
 
-    res = {
-        "group": group,
-        "status": "success"
-    }
+    res = {"group": group, "status": "success"}
 
     return res, 200

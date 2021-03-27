@@ -49,30 +49,19 @@ swagger_template = {
             "responsibleOrganization": "Knight Hacks",
             "responsibleDeveloper": "Knight Hacks Dev Team",
             "email": "webmaster@knighthacks.org",
-            "url": "https://knighthacks.org"
+            "url": "https://knighthacks.org",
         },
-        "version": "0.0.1"
+        "version": "0.0.1",
     },
     "basePath": "/api",
-    "schemes": [
-        "http",
-        "https"
-    ],
+    "schemes": ["http", "https"],
     "components": {
         "schemas": schema,
         "securitySchemes": {
-            "ApiKeyAuth": {
-                "type": "apiKey",
-                "in": "header",
-                "name": "Authorization"
-            },
-            "CookieAuth": {
-                "type": "apiKey",
-                "in": "cookie",
-                "name": "sid"
-            }
-        }
-    }
+            "ApiKeyAuth": {"type": "apiKey", "in": "header", "name": "Authorization"},
+            "CookieAuth": {"type": "apiKey", "in": "cookie", "name": "sid"},
+        },
+    },
 }
 swagger = Swagger(template=swagger_template)
 
@@ -98,6 +87,7 @@ def create_app():
     bcrypt.init_app(app)
 
     from src.common.json import JSONEncoderBase
+
     app.json_encoder = JSONEncoderBase
 
     """Register Blueprints"""

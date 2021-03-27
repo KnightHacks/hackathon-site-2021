@@ -42,8 +42,10 @@ def check_verification_status(loggedin_user, email: str):
             description: No User exists with that email!
     """
 
-    if (not(ROLES(loggedin_user.roles) & (ROLES.MOD | ROLES.ADMIN))
-            and loggedin_user.email != email):
+    if (
+        not (ROLES(loggedin_user.roles) & (ROLES.MOD | ROLES.ADMIN))
+        and loggedin_user.email != email
+    ):
         raise Unauthorized()
 
     user = User.objects(email=email).only("email_verification").first()
@@ -51,9 +53,7 @@ def check_verification_status(loggedin_user, email: str):
     if not user:
         return NotFound()
 
-    res = {
-        "email_status": user.email_verification
-    }
+    res = {"email_status": user.email_verification}
 
     return res, 200
 
@@ -61,7 +61,9 @@ def check_verification_status(loggedin_user, email: str):
 """Inline comment on following decorator is to disable flake8 'longline' err"""
 
 
-@email_verify_blueprint.route("/email/verify/<email_token>/", methods=["PUT"])  # noqa: E501
+@email_verify_blueprint.route(
+    "/email/verify/<email_token>/", methods=["PUT"]
+)  # noqa: E501
 def update_registration_status(email_token: str):
     """
     Updates the email registration status
@@ -92,14 +94,10 @@ def update_registration_status(email_token: str):
     if not isvalid:
         raise NotFound("Invalid verification token. Please try again.")
 
-    user.modify(email_verification=True,
-                unset__email_token_hash="")
+    user.modify(email_verification=True, unset__email_token_hash="")
     user.save()
 
-    res = {
-        "status": "success",
-        "message": "User email successfully verified"
-    }
+    res = {"status": "success", "message": "User email successfully verified"}
 
     return res, 200
 
@@ -107,7 +105,9 @@ def update_registration_status(email_token: str):
 """Inline comment on following decorator is to disable flake8 'longline' err"""
 
 
-@email_verify_blueprint.route("/email/verify/<username>/", methods=["POST"])  # noqa: E501
+@email_verify_blueprint.route(
+    "/email/verify/<username>/", methods=["POST"]
+)  # noqa: E501
 @authenticate
 def send_registration_email(loggedin_user, username: str):
     """
@@ -130,9 +130,13 @@ def send_registration_email(loggedin_user, username: str):
             description: Unexpected error.
     """
 
-    if (not(ROLES(loggedin_user.roles) & ROLES.ADMIN)
-            and loggedin_user.username != username):
-        raise Unauthorized("User can only request a verification email for themself!")  # noqa: E501
+    if (
+        not (ROLES(loggedin_user.roles) & ROLES.ADMIN)
+        and loggedin_user.username != username
+    ):
+        raise Unauthorized(
+            "User can only request a verification email for themself!"
+        )  # noqa: E501
 
     user = User.objects(username=username).first()
 
@@ -142,11 +146,9 @@ def send_registration_email(loggedin_user, username: str):
     token = user.encode_email_token()
 
     from src.common.mail import send_verification_email
+
     send_verification_email(user, token)
 
-    res = {
-        "status": "success",
-        "message": "Verification email successfully sent!"
-    }
+    res = {"status": "success", "message": "Verification email successfully sent!"}
 
     return res, 201

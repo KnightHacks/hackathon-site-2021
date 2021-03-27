@@ -57,7 +57,8 @@ def update_events(_):
     ClubEvent.drop_collection()
 
     for event in data:
-        if not isinstance(event, dict): continue
+        if not isinstance(event, dict):
+            continue
         if event.get("date"):
             event["date"] = dateutil.parser.parse(event["date"])
         else:
@@ -68,10 +69,7 @@ def update_events(_):
         except ValidationError:
             raise BadRequest()
 
-    res = {
-        "status": "success",
-        "message": "Events successfully updated!"
-    }
+    res = {"status": "success", "message": "Events successfully updated!"}
 
     return res, 201
 
@@ -156,22 +154,24 @@ def get_events():
     args = request.args
     query = {}
 
-    if args.get("rdate") and (
-            args.get("start_date") or args.get("end_date")):
-        raise BadRequest("Parameter `rdate` is incompatible with `start_date` and `end_date`!")  # noqa: E501
+    if args.get("rdate") and (args.get("start_date") or args.get("end_date")):
+        raise BadRequest(
+            "Parameter `rdate` is incompatible with `start_date` and `end_date`!"
+        )  # noqa: E501
 
-    if args.get("confirmed", "true") != "true" and (args.get("start_date") or args.get("end_date") or args.get("rdate")):  # noqa: E501
-        raise BadRequest("Parameter `confirmed` must be true or undefined while using date parameters!")  # noqa: E501
+    if args.get("confirmed", "true") != "true" and (
+        args.get("start_date") or args.get("end_date") or args.get("rdate")
+    ):  # noqa: E501
+        raise BadRequest(
+            "Parameter `confirmed` must be true or undefined while using date parameters!"
+        )  # noqa: E501
 
     if args.get("confirmed", "true") == "true":
         query["date__type"] = "date"
 
     if args.get("rdate"):
         now = datetime.now()
-        now = now.replace(hour=0,
-                          minute=0,
-                          second=0,
-                          microsecond=0)
+        now = now.replace(hour=0, minute=0, second=0, microsecond=0)
 
         if args.get("rdate") == "Today":
             query["date__gte"] = now
@@ -188,18 +188,15 @@ def get_events():
     if args.get("start_date") and args.get("end_date"):
         query |= {
             "date__gte": dateutil.parser.parse(args["start_date"]),
-            "date__lt": dateutil.parser.parse(args["end_date"])
+            "date__lt": dateutil.parser.parse(args["end_date"]),
         }
 
     events = ClubEvent.objects(**query).exclude("id")
 
     count = args.get("count")
     if count:
-        events = events[:int(count)]
+        events = events[: int(count)]
 
-    res = {
-        "count": events.count(),
-        "events": events
-    }
+    res = {"count": events.count(), "events": events}
 
     return res, 200
