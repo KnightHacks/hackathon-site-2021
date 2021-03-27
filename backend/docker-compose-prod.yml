@@ -28,7 +28,7 @@ services:
         volumes:
             - ./python:/home/backend/app
         environment:
-            APP_SETTINGS: src.config.DevelopmentConfig
+            APP_SETTINGS: src.config.ProductionConfig
             MONGO_URI: "mongodb://kh-mongo/test"
             CELERY_BROKER_URL: "amqp://kh-rabbitmq"
             MAIL_SERVER: "smtp.knighthacks.org"
@@ -38,6 +38,4 @@ services:
             MAIL_PASSWORD: "supersecurepassworddontatme"
             MAIL_DEFAULT_SENDER: "noreply@knighthacks.org"
             SECRET_KEY: "vivalapluto"
-            
-volumes:
-    mongo-hackathon-data:
+
