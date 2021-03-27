@@ -28,7 +28,7 @@ class Group(BaseDocument):
             "first_name": member.first_name,
             "last_name": member.last_name,
             "email": member.email,
-            "username": member.username,
+            "username": member.username
         }
 
     def to_mongo(self, *args, **kwargs):

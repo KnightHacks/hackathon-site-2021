@@ -74,10 +74,12 @@ def create_hacker():
     """Send Verification Email"""
     token = hacker.encode_email_token()
     from src.common.mail import send_verification_email
-
     send_verification_email(hacker, token)
 
-    res = {"status": "success", "message": "Hacker was created!"}
+    res = {
+        "status": "success",
+        "message": "Hacker was created!"
+    }
 
     return res, 201
 
@@ -110,7 +112,7 @@ def get_user_search(username: str):
         "Hacker Profile": hacker.hacker_profile,
         "User Name": hacker.username,
         "message": "Successfully reached profile.",
-        "status": "success",
+        "status": "success"
     }
 
     return res, 200
@@ -146,10 +148,8 @@ def delete_hacker(loggedin_user, username: str):
             description: Unexpected error.
     """
 
-    if (
-        not (ROLES(loggedin_user.roles) & (ROLES.MOD | ROLES.ADMIN))
-        and loggedin_user.username != username
-    ):
+    if (not(ROLES(loggedin_user.roles) & (ROLES.MOD | ROLES.ADMIN))
+            and loggedin_user.username != username):
         raise Unauthorized("Hacker can only delete their own account!")
 
     hacker = Hacker.objects(username=username)
@@ -158,7 +158,10 @@ def delete_hacker(loggedin_user, username: str):
         raise NotFound("The specified hacker does not exist in the database.")
     hacker.delete()
 
-    res = {"status": "success", "message": "Hacker was deleted!"}
+    res = {
+        "status": "success",
+        "message": "Hacker was deleted!"
+    }
 
     return res, 201
 
@@ -216,10 +219,12 @@ def update_user_profile_settings(username: str):
     if newemail:
         token = hacker.encode_email_token()
         from src.common.mail import send_verification_email
-
         send_verification_email(hacker, token)
 
-    res = {"status": "success", "message": "Hacker profile successfully updated"}
+    res = {
+        "status": "success",
+        "message": "Hacker profile successfully updated"
+    }
 
     return res, 201
 
@@ -248,13 +253,13 @@ def hacker_settings(username: str):
             description: Hacker not found!
     """
 
-    hacker = (
-        Hacker.objects(username=username)
-        .exclude(
-            "password", "date", "email_token_hash", "tracks", "hacker_profile", "id"
-        )
-        .first()
-    )
+    hacker = Hacker.objects(username=username).exclude(
+        "password",
+        "date",
+        "email_token_hash",
+        "tracks",
+        "hacker_profile",
+        "id").first()
 
     if not hacker:
         raise NotFound()
@@ -264,6 +269,10 @@ def hacker_settings(username: str):
 
     hacker["roles"] = ROLES(hacker["roles"])
 
-    res = {"hacker": hacker, "status": "success", "message": "Found hacker settings"}
+    res = {
+        "hacker": hacker,
+        "status": "success",
+        "message": "Found hacker settings"
+    }
 
     return res, 200

@@ -42,5 +42,9 @@ def count_users():
     hacker_count = Hacker.objects.count()
     sponsor_count = Sponsor.objects.count()
 
-    res = {"total": user_count, "hackers": hacker_count, "sponsors": sponsor_count}
+    res = {
+        "total": user_count,
+        "hackers": hacker_count,
+        "sponsors": sponsor_count
+    }
     return res, 200

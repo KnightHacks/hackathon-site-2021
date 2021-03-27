@@ -21,20 +21,17 @@ def privileges(roles):
         Parameters:
             roles (ROLES): example: ROLES.MOD | ROLES.ADMIN
     """
-
     def decorator(f):
         @wraps(f)
         def decorated_function(user, *args, **kwargs):
             user_roles = ROLES(user.roles)
 
             """ Check if the user has the required permission(s) """
-            if not (user_roles & roles):
+            if not(user_roles & roles):
                 raise Forbidden()
 
             return f(user, *args, **kwargs)
-
         return decorated_function
-
     return decorator
 
 
@@ -45,13 +42,8 @@ def authenticate(f):
 
     doc = getattr(f, "__doc__")
     if doc:
-        setattr(
-            f,
-            "__doc__",
-            doc
-            + """security:
-        - CookieAuth: []""",
-        )
+        setattr(f, "__doc__", doc + """security:
+        - CookieAuth: []""")
 
     @wraps(f)
     def decorator(*args, **kwargs):

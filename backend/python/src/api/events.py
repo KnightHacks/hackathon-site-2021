@@ -23,18 +23,10 @@ import dateutil.parser
 
 events_blueprint = Blueprint("events", __name__)
 
-EVENT_FIELDS = (
-    "name",
-    "date_time",
-    "description",
-    "image",
-    "link",
-    "end_date_time",
-    "attendees_count",
-    "event_status",
-    "sponsors",
-    "user",
-)
+EVENT_FIELDS = ("name", "date_time", "description",
+                "image", "link", "end_date_time",
+                "attendees_count", "event_status",
+                "sponsors", "user")
 
 
 @events_blueprint.route("/events/create_event/", methods=["POST"])
@@ -72,9 +64,7 @@ def create_event():
         data["end_date_time"] = dateutil.parser.parse(data["end_date_time"])
 
     if data.get("sponsors"):
-        data["sponsors"] = list(
-            map(lambda name: Sponsor.objects(username=name).first(), data["sponsors"])
-        )  # noqa: E501
+        data["sponsors"] = list(map(lambda name: Sponsor.objects(username=name).first(), data["sponsors"]))  # noqa: E501
     new_data = {}
 
     for field in EVENT_FIELDS:
@@ -87,7 +77,10 @@ def create_event():
     except NotUniqueError:
         raise Conflict("The event name already exists.")
 
-    res = {"status": "success", "message": "Event was created!"}
+    res = {
+        "status": "success",
+        "message": "Event was created!"
+    }
 
     return res, 201
 
@@ -140,7 +133,10 @@ def update_event(event_name: str):
 
     event.modify(**data)
 
-    res = {"status": "success", "message": "Event was updated!"}
+    res = {
+        "status": "success",
+        "message": "Event was updated!"
+    }
 
     return res, 201
 
@@ -164,6 +160,9 @@ def get_all_events():
     if not events:
         raise NotFound("There are no events created.")
 
-    res = {"events": events, "status": "success"}
+    res = {
+        "events": events,
+        "status": "success"
+    }
 
     return res, 201

@@ -59,17 +59,17 @@ def create_sponsor():
     """Send Verification Email"""
     token = sponsor.encode_email_token()
     from src.common.mail import send_verification_email
-
     send_verification_email(sponsor, token)
 
-    res = {"status": "success", "message": "Sponsor was created!"}
+    res = {
+        "status": "success",
+        "message": "Sponsor was created!"
+    }
 
     return res, 201
 
 
-@sponsors_blueprint.route(
-    "/sponsors/delete_sponsor/<sponsor_name>/", methods=["DELETE"]
-)  # noqa: E501
+@sponsors_blueprint.route("/sponsors/delete_sponsor/<sponsor_name>/", methods=["DELETE"])  # noqa: E501
 @authenticate
 @privileges(ROLES.SPONSOR | ROLES.ADMIN)
 def delete_sponsor(loggedin_user, sponsor_name: str):
@@ -97,10 +97,8 @@ def delete_sponsor(loggedin_user, sponsor_name: str):
             description: Unexpected error.
     """
 
-    if (
-        not (ROLES(loggedin_user.roles) & (ROLES.MOD | ROLES.ADMIN))
-        and loggedin_user.sponsor_name != sponsor_name
-    ):
+    if (not(ROLES(loggedin_user.roles) & (ROLES.MOD | ROLES.ADMIN))
+            and loggedin_user.sponsor_name != sponsor_name):
         raise Unauthorized("Sponsor can only delete their own account!")
 
     sponsor = Sponsor.objects(sponsor_name=sponsor_name)
@@ -110,7 +108,10 @@ def delete_sponsor(loggedin_user, sponsor_name: str):
 
     sponsor.delete()
 
-    res = {"status": "success", "message": "Sponsor was deleted!"}
+    res = {
+        "status": "success",
+        "message": "Sponsor was deleted!"
+    }
 
     return res, 201
 
@@ -135,13 +136,17 @@ def get_sponsor(sponsor_name: str):
 
     """
     sponsor = Sponsor.objects(sponsor_name=sponsor_name).exclude(
-        "date", "email_token_hash", "id"
-    )
+        "date",
+        "email_token_hash",
+        "id")
 
     if not sponsor:
         raise NotFound()
 
-    res = {"Sponsor": sponsor, "status": "success"}
+    res = {
+        "Sponsor": sponsor,
+        "status": "success"
+    }
 
     print(res)
 
@@ -193,5 +198,8 @@ def edit_sponsor(sponsor_name: str):
     except ValidationError:
         raise BadRequest()
 
-    res = {"status": "success", "message": "Sponsor successfully updated."}
+    res = {
+        "status": "success",
+        "message": "Sponsor successfully updated."
+    }
     return res, 201

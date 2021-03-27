@@ -66,7 +66,10 @@ def create_category():
     except ValidationError:
         raise BadRequest()
 
-    res = {"status": "success", "message": "Category was created!"}
+    res = {
+        "status": "success",
+        "message": "Category was created!"
+    }
 
     return res, 201
 
@@ -277,6 +280,9 @@ def get_category():
         c_dict["sponsor"] = c.sponsor.sponsor_name
         cat_list.append(c_dict)
 
-    res = {"count": cat.count(), "categories": cat_list}
+    res = {
+        "count": cat.count(),
+        "categories": cat_list
+    }
 
     return res, 201

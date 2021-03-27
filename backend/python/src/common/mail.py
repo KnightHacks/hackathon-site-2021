@@ -11,14 +11,12 @@ from src.tasks.mail_tasks import send_async_email
 def send_verification_email(user, token):
     """Sends a verification email to the user"""
     href = f"{currapp.config['FRONTEND_URL']}/verifyemail?token={token}"
-    send_async_email(
-        subject="Knight Hacks - Verify your Email",
-        recipient=user.email,
-        text_body=render_template("emails/email_verification.txt", user=user),
-        html_body=render_template(
-            "emails/email_verification.html", user=user, href=href  # noqa: E501
-        ),
-    )
+    send_async_email(subject="Knight Hacks - Verify your Email",
+                     recipient=user.email,
+                     text_body=render_template("emails/email_verification.txt",
+                                               user=user),
+                     html_body=render_template("emails/email_verification.html",  # noqa: E501
+                                               user=user, href=href))
 
 
 def send_event_email(user, event):

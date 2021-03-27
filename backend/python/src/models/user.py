@@ -42,7 +42,8 @@ class ROLES(Flag):
 
 
 class User(BaseDocument):
-    meta = {"allow_inheritance": True, "ordering": ["date"]}
+    meta = {"allow_inheritance": True,
+            "ordering": ["date"]}
 
     username = db.StringField(unique=True, required=True)
     email = db.EmailField(unique=True, required=True)
@@ -55,26 +56,26 @@ class User(BaseDocument):
     def encode_auth_token(self) -> str:
         """Encode the auth token"""
         payload = {
-            "exp": datetime.now()
-            + timedelta(
+            "exp": datetime.now() + timedelta(
                 minutes=current_app.config["TOKEN_EXPIRATION_MINUTES"],
-                seconds=current_app.config["TOKEN_EXPIRATION_SECONDS"],
-            ),
+                seconds=current_app.config["TOKEN_EXPIRATION_SECONDS"]),
             "iat": datetime.now(),
-            "sub": self.username,
+            "sub": self.username
         }
 
         return jwt.encode(
-            payload, current_app.config.get("SECRET_KEY"), algorithm="HS256"
+            payload,
+            current_app.config.get("SECRET_KEY"),
+            algorithm="HS256"
         )
 
     @staticmethod
     def decode_auth_token(auth_token: str) -> str:
         """Decode the auth token"""
         try:
-            payload = jwt.decode(
-                auth_token, current_app.config.get("SECRET_KEY"), algorithms=["HS256"]
-            )
+            payload = jwt.decode(auth_token,
+                                 current_app.config.get("SECRET_KEY"),
+                                 algorithms=["HS256"])
             return payload["sub"]
         except jwt.ExpiredSignatureError:
             raise Unauthorized()
@@ -84,16 +85,16 @@ class User(BaseDocument):
     def encode_email_token(self) -> str:
         """Encode the email token"""
         payload = {
-            "exp": datetime.now()
-            + timedelta(
+            "exp": datetime.now() + timedelta(
                 minutes=current_app.config["TOKEN_EMAIL_EXPIRATION_MINUTES"],
-                seconds=current_app.config["TOKEN_EMAIL_EXPIRATION_SECONDS"],
-            ),
+                seconds=current_app.config["TOKEN_EMAIL_EXPIRATION_SECONDS"]),
             "iat": datetime.now(),
-            "sub": self.username,
+            "sub": self.username
         }
         email_token = jwt.encode(
-            payload, current_app.config.get("SECRET_KEY"), algorithm="HS256"
+            payload,
+            current_app.config.get("SECRET_KEY"),
+            algorithm="HS256"
         )
 
         conf = current_app.config["BCRYPT_LOG_ROUNDS"]
@@ -108,9 +109,9 @@ class User(BaseDocument):
     def decode_email_token(email_token: str) -> str:
         """Decodes the email token"""
         try:
-            payload = jwt.decode(
-                email_token, current_app.config.get("SECRET_KEY"), algorithms=["HS256"]
-            )
+            payload = jwt.decode(email_token,
+                                 current_app.config.get("SECRET_KEY"),
+                                 algorithms=["HS256"])
             return payload["sub"]
         except jwt.ExpiredSignatureError:
             raise Unauthorized()
@@ -119,5 +120,7 @@ class User(BaseDocument):
 
     def __init__(self, *args, **kwargs):
         conf = current_app.config["BCRYPT_LOG_ROUNDS"]
-        hashed_password = bcrypt.generate_password_hash(kwargs.pop("password"), conf)
+        hashed_password = bcrypt.generate_password_hash(
+            kwargs.pop("password"),
+            conf)
         super(User, self).__init__(*args, **kwargs, password=hashed_password)
