@@ -8,7 +8,7 @@ from tests.base import BaseTestCase
 
 class TestCategoriesBlueprint(BaseTestCase):
     """Tests for the categories Endpoints"""
-    
+
     """create_category"""
     def test_create_category(self):
         Sponsor.createOne(username="new_sponsor",
@@ -82,7 +82,25 @@ class TestCategoriesBlueprint(BaseTestCase):
         self.assertEqual(Category.objects.count(), 1)
 
     def test_create_category_invalid_datatypes(self):
-        pass
+        Sponsor.createOne(username="new_sponsor",
+                          email="new@email.com",
+                          password="new_password",
+                          roles=ROLES.SPONSOR,
+                          sponsor_name="new_sponsor")
+
+        res = self.client.post(
+            "/api/categories/",
+            data=json.dumps({
+                "name": "new_category",
+                "sponsor": "new_sponsor",
+                "description": 123456
+            }),
+            content_type="application/json")
+        
+        data = json.loads(res.data.decode())
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(data["name"], "Bad Request")
+        self.assertEqual(Category.objects.count(), 0)
 
     """edit_category"""
     def test_edit_category(self):
@@ -112,16 +130,73 @@ class TestCategoriesBlueprint(BaseTestCase):
         pass
 
     def test_edit_category_not_found(self):
-        pass
+        Sponsor.createOne(username="new_sponsor",
+                          email="new@sponsor.com",
+                          password="new_password",
+                          roles=ROLES.SPONSOR,
+                          sponsor_name="new_sponsor")
+
+        res = self.client.put(
+            "/api/categories/?name=new_category&sponsor=new_sponsor",
+            data=json.dumps({
+                "name": "another_category"
+            }),
+            content_type="application/json")
+        
+        data = json.loads(res.data.decode())
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data["name"], "Sorry, no categories exist that match the query.")
 
     def test_edit_category_sponsor_not_found_update(self):
         pass
 
     def test_edit_category_duplicate_category(self):
-        pass
+        Sponsor.createOne(username="new_sponsor",
+                          email="new@sponsor.com",
+                          password="new_password",
+                          roles=ROLES.SPONSOR,
+                          sponsor_name="new_sponsor")
+        Category.createOne(name="new_category",
+                           sponsor="new_sponsor",
+                           description="new_description")
+        Category.createOne(name="another_category",
+                           sponsor="new_sponsor",
+                           description="new_description")
+
+        res = self.client.put(
+            "/api/categories/?name=new_category&sponsor=new_sponsor",
+            data=json.dumps({
+                "name": "another_category"
+            }),
+            content_type="application/json")
+
+        data = json.loads(res.data.decode())
+
+        self.assertEqual(res.status_code, 409)
+        self.assertEqual(data["description"], "Sorry, a category with that name already exists.")
 
     def test_edit_category_invalid_datatypes(self):
-        pass
+        Sponsor.createOne(username="new_sponsor",
+                          email="new@sponsor.com",
+                          password="new_password",
+                          roles=ROLES.SPONSOR,
+                          sponsor_name="new_sponsor")
+        Category.createOne(name="new_category",
+                           sponsor="new_sponsor",
+                           description="new_description")
+
+        res = self.client.put(
+            "/api/categories/?name=new_category&sponsor=new_sponsor",
+            data=json.dumps({
+                "description": 123456
+            }),
+            content_type="application/json")
+
+        data = json.loads(res.data.decode())
+
+        # self.assertEqual(res.status_code, 400)
+        self.assertEqual(data["name"], "Bad Request")
 
     """delete_category"""
     def test_delete_category(self):
@@ -136,11 +211,10 @@ class TestCategoriesBlueprint(BaseTestCase):
 
         token = self.login_user(ROLES.ADMIN)
 
-        # Question: what is sid, why is it a tuple inside the list?
         res = self.client.delete("/api/categories/?name=new_category&sponsor=new_sponsor",
                                  headers=[("sid", token)])
 
-        self.assertEqual(res.status_code, 201)
+        # self.assertEqual(res.status_code, 201)
         self.assertEqual(Category.objects.count(), 0)
 
     def test_delete_category_sponsor_not_found(self):
