@@ -10,6 +10,7 @@ class TestCategoriesBlueprint(BaseTestCase):
     """Tests for the categories Endpoints"""
 
     """create_category"""
+
     def test_create_category(self):
         Sponsor.createOne(username="new_sponsor",
                           email="new@email.com",
@@ -103,6 +104,7 @@ class TestCategoriesBlueprint(BaseTestCase):
         self.assertEqual(Category.objects.count(), 0)
 
     """edit_category"""
+
     def test_edit_category(self):
         Sponsor.createOne(username="new_sponsor",
                           email="new@email.com",
@@ -199,6 +201,7 @@ class TestCategoriesBlueprint(BaseTestCase):
         self.assertEqual(data["name"], "Bad Request")
 
     """delete_category"""
+
     def test_delete_category(self):
         Sponsor.createOne(username="new_sponsor",
                           email="new@email.com",
@@ -246,6 +249,7 @@ class TestCategoriesBlueprint(BaseTestCase):
         self.assertEqual(Category.objects.count(), 0)
 
     """get_category"""
+
     def test_get_category(self):
         Sponsor.createOne(username="new_sponsor",
                           email="new@email.com",
