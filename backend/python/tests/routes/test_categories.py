@@ -129,7 +129,26 @@ class TestCategoriesBlueprint(BaseTestCase):
         self.assertEqual(updated.name, "another_category")
 
     def test_edit_category_sponsor_not_found_query(self):
-        pass
+        Sponsor.createOne(username="new_sponsor",
+                          email="new@email.com",
+                          password="new_password",
+                          roles=ROLES.SPONSOR,
+                          sponsor_name="new_sponsor")
+        Category.createOne(name="new_category",
+                           sponsor="new_sponsor",
+                           description="new_description")
+        
+        res = self.client.put(
+            "/api/categories/?name=new_category&sponsor=another_sponsor",
+            data=json.dumps({
+                "name": "another_category"
+            }),
+            content_type="application/json")
+
+        data = json.loads(res.data.decode())
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data["description"], "A sponsor with that name does not exist!")
 
     def test_edit_category_not_found(self):
         Sponsor.createOne(username="new_sponsor",
@@ -148,10 +167,30 @@ class TestCategoriesBlueprint(BaseTestCase):
         data = json.loads(res.data.decode())
 
         self.assertEqual(res.status_code, 404)
-        self.assertEqual(data["name"], "Sorry, no categories exist that match the query.")
+        self.assertEqual(data["description"], "Sorry, no categories exist that match the query.")
 
     def test_edit_category_sponsor_not_found_update(self):
-        pass
+        Sponsor.createOne(username="new_sponsor",
+                          email="new@email.com",
+                          password="new_password",
+                          roles=ROLES.SPONSOR,
+                          sponsor_name="new_sponsor")
+        Category.createOne(name="new_category",
+                           sponsor="new_sponsor",
+                           description="new_description")
+        
+        res = self.client.put(
+            "/api/categories/?name=new_category",
+            data=json.dumps({
+                "name": "another_category",
+                "sponsor": "another_sponsor"
+            }),
+            content_type="application/json")
+
+        data = json.loads(res.data.decode())
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data["description"], "A sponsor with that name does not exist!")
 
     def test_edit_category_duplicate_category(self):
         Sponsor.createOne(username="new_sponsor",
@@ -197,7 +236,7 @@ class TestCategoriesBlueprint(BaseTestCase):
 
         data = json.loads(res.data.decode())
 
-        # self.assertEqual(res.status_code, 400)
+        self.assertEqual(res.status_code, 400)
         self.assertEqual(data["name"], "Bad Request")
 
     """delete_category"""
@@ -217,7 +256,7 @@ class TestCategoriesBlueprint(BaseTestCase):
         res = self.client.delete("/api/categories/?name=new_category&sponsor=new_sponsor",
                                  headers=[("sid", token)])
 
-        # self.assertEqual(res.status_code, 201)
+        self.assertEqual(res.status_code, 201)
         self.assertEqual(Category.objects.count(), 0)
 
     def test_delete_category_sponsor_not_found(self):

@@ -124,6 +124,5 @@ class User(BaseDocument):
             kwargs['password'] = bcrypt.generate_password_hash(
                 kwargs['password'],
                 conf)
-            current_app.logger.error('E' * 20)
 
         super(User, self).__init__(*args, **kwargs)
