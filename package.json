@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "prettier": "^2.2.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint": "^7.17.0"
   },
@@ -26,6 +25,7 @@
   "homepage": "https://github.com/zenith110/knighthacks-web-2021#readme",
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "eslint": "^7.17.0"
+    "eslint": "^7.17.0",
+    "prettier": "2.2.1"
   }
 }
