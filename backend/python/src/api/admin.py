@@ -81,6 +81,7 @@ def create_hacker(loggedin_user):
 
     return res, 201
 
+
 @admin_blueprint.route("/admin/sponsors/", methods=["POST"])
 @authenticate
 @privileges(ROLES.ADMIN)
@@ -122,7 +123,8 @@ def create_sponsor(loggedin_user):
         app.config["BCRYPT_LOG_ROUNDS"])
 
     try:
-        sponsor = Sponsor.createOne(**data, roles=ROLES.SPONSOR, email_verification=True)
+        sponsor = Sponsor.createOne(**data, roles=ROLES.SPONSOR, 
+                                    email_verification=True)
     except NotUniqueError:
         raise Conflict("Sorry, this sponsor already exists.")
     except ValidationError:
