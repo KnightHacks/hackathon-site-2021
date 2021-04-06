@@ -11,7 +11,7 @@
 """
 from flask import Blueprint, request, current_app as app
 from mongoengine.errors import NotUniqueError, ValidationError
-from werkzeug.exceptions import BadRequest, Conflict, NotFound, Unauthorized
+from werkzeug.exceptions import BadRequest, Conflict, Unauthorized
 import dateutil.parser
 from src.models.hacker import Hacker
 from src.models.sponsor import Sponsor
@@ -21,6 +21,7 @@ from src.common.decorators import authenticate, privileges
 HACKER_PROFILE_FIELDS = ("resume", "socials", "school_name", "grad_year")
 
 admin_blueprint = Blueprint("admin", __name__)
+
 
 @admin_blueprint.route("/admin/hackers/", methods=["POST"])
 @authenticate
@@ -65,7 +66,8 @@ def create_hacker(loggedin_user):
         data["hacker_profile"][f] = data.pop(f, None)
 
     try:
-        hacker = Hacker.createOne(**data, roles=ROLES.HACKER, isaccepted=True, email_verification=True)
+        hacker = Hacker.createOne(**data, roles=ROLES.HACKER, isaccepted=True, 
+                                  email_verification=True)
 
     except NotUniqueError:
         raise Conflict("Sorry, that username or email already exists.")
