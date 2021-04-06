@@ -7,7 +7,7 @@ module.exports = {
         "koi-fish-pond": "url('/src/assets/KoiFishPond.png')",
       }),
       backgroundColor: (theme) => ({
-        "test-10": "rgba(191, 219, 254, 0.2)",
+        "landing-transparent": "rgba(191, 219, 254, 0.2)",
       }),
     },
   },

@@ -1,15 +1,15 @@
 import { CgMenu, CgVolume } from "react-icons/cg";
 function App() {
   return (
-    <div className="bg-koi-fish-pond w-screen h-screen grid grid-col-4 grid-rows-1 grid-flow-col gap-0">
-      <div className="col-span-1 min-w-0 bg-red-800 w-full">
-        <div className="flex flex-row text-white">
-          <CgVolume size="1em" className=" bg-blue-800" />
-          <CgMenu size="1em" className=" bg-purple-300" />
+    <div className="bg-koi-fish-pond w-screen h-screen grid grid-cols-5 grid-rows-1 grid-flow-col gap-0">
+      <div className="col-span-1 w-full">
+        <div className="flex flex-row text-white justify-end space-x-8 mr-12 mt-12">
+          <CgVolume className="text-5xl" />
+          <CgMenu className="text-5xl" />
         </div>
       </div>
 
-      <div className="col-span-2 text-white bg-green-800 w-full">
+      <div className="col-span-3 text-white w-full bg-landing-transparent">
         <div className="flex justify-center items-center flex-col w-full h-full">
           <p className="text-5xl">Welcome to</p>
           <p className="text-8xl">KNIGHT HACKS</p> {/* change this */}
@@ -17,7 +17,7 @@ function App() {
         </div>
       </div>
 
-      <div className="col-span-1 bg-yellow-500 w-full" />
+      <div className="col-span-1 w-full" />
     </div>
   );
 }
