@@ -14,6 +14,9 @@ function App() {
           <p className="text-5xl">Welcome to</p>
           <p className="text-8xl">KNIGHT HACKS</p> {/* change this */}
           <p className="text-xl">October 9th - October 11th, 2021</p>
+          <button className="px-4 py-2 border-white border-8 rounded-full text-4xl mt-8 hover:bg-blue-400 focus:outline-none">
+            REGISTER
+          </button>
         </div>
       </div>
 
