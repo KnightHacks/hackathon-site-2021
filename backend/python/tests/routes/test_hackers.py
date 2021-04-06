@@ -191,6 +191,28 @@ class TestHackersBlueprint(BaseTestCase):
 
         self.assertEqual(updated.email, "schmuckbar@mensch.com")
 
+    def test_update_user_profile_settings_same_email(self):
+        Hacker.createOne(
+            username="foobar",
+            email="foobar@email.com",
+            password="123456",
+            roles=ROLES.HACKER
+        )
+
+        res = self.client.put(
+            "/api/hackers/foobar/",
+            data=json.dumps({"first_name": "schmuckbar"}),
+            content_type="application/json",
+        )
+
+        data = json.loads(res.data.decode())
+
+        self.assertEqual(res.status_code, 201)
+
+        updated = Hacker.findOne(username="foobar")
+
+        self.assertEqual(updated.first_name, "schmuckbar")
+
     def test_update_user_profile_settings_invalid_json(self):
         res = self.client.put(
             "/api/hackers/foobar/", data=json.dumps({}), content_type="application/json"
@@ -222,6 +244,26 @@ class TestHackersBlueprint(BaseTestCase):
         )
 
         self.assertEqual(res.status_code, 400)
+
+    """hacker_settings"""
+    def test_hacker_settings(self):
+        Hacker.createOne(
+            username="foobar",
+            email="foobar@email.com",
+            password="123456",
+            roles=ROLES.HACKER
+        )
+
+        res = self.client.get("/api/hackers/foobar/settings/")
+
+        self.assertEqual(res.status_code, 200)
+
+
+    def test_hacker_settings_not_found(self):
+
+        res = self.client.get("/api/hackers/foobar/settings/")
+
+        self.assertEqual(res.status_code, 404)
 
     """accept_hacker"""
     def test_accept_hacker(self):
