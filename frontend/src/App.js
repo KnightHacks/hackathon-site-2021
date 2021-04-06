@@ -14,11 +14,13 @@ const App = () => {
       <div className="col-span-3 text-white w-full bg-landing-transparent">
         <div className="flex justify-center items-center flex-col w-full h-full">
           <div className="flex justify-center items-center flex-col w-full h-full">
-            <p className="text-5xl">Welcome to</p>
-            <p className="text-8xl">KNIGHT HACKS</p> {/* change this */}
+            <h1 className="text-5xl">Welcome to</h1>
+            <div className="bg-knight-hacks-logo w-full h-36 bg-no-repeat my-4 bg-center" />
             <p className="text-xl">October 9th - October 11th, 2021</p>
-            <button className="px-4 py-2 border-white border-8 rounded-full text-4xl mt-8 hover:bg-blue-400 focus:outline-none">
-              REGISTER
+            <button className="px-12 py-2 border-white border-8 rounded-full text-4xl mt-8 hover:bg-blue-400 focus:outline-none">
+              <p className="tracking-widest select-none" unselectable="on">
+                REGISTER
+              </p>
             </button>
           </div>
           <div className="flex flex-row mt-auto mb-8 space-x-8 text-6xl">
