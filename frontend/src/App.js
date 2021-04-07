@@ -1,17 +1,50 @@
+import { useState } from "react";
 import { CgMenu, CgVolume } from "react-icons/cg";
 import { FaTwitter, FaInstagram, FaFacebookF } from "react-icons/fa";
 
-const App = () => {
+const Menu = ({ open, setOpen }) => {
   return (
-    <div className="bg-koi-fish-pond w-screen h-screen grid grid-cols-5 grid-rows-1 grid-flow-col gap-0">
-      <div className="col-span-1 w-full">
-        <div className="flex flex-row text-white justify-end space-x-8 mr-12 mt-12">
-          <CgVolume className="text-5xl" />
-          <CgMenu className="text-5xl" />
+    <div
+      className={
+        "w-full " +
+        (open ? "z-10 absolute w-full h-full bg-menu-transparent" : "")
+      }
+    >
+      <div className={"flex flex-row text-white space-x-8 mt-12 ml-20 w-min"}>
+        <CgVolume className="text-5xl cursor-pointer" />
+        <div>
+          <CgMenu
+            className="text-5xl cursor-pointer"
+            onClick={() => setOpen(!open)}
+          />
+          {open ? (
+            <ul className="text-5xl text-white">
+              <li className="mt-5">About</li>
+              <li className="mt-5">Sponsors</li>
+              <li className="mt-5">Schedule</li>
+              <li className="mt-5">FAQ</li>
+              <li className="mt-5">Register</li>
+            </ul>
+          ) : null}
         </div>
       </div>
+    </div>
+  );
+};
 
-      <div className="col-span-3 text-white w-full bg-landing-transparent">
+const App = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="bg-koi-fish-pond w-full h-screen grid grid-cols-5 grid-rows-1 grid-flow-col gap-0">
+      <div className="col-span-1 w-full">
+        <Menu open={open} setOpen={setOpen} />
+      </div>
+      <div
+        className={
+          "col-span-3 text-white w-full bg-landing-transparent " +
+          (open ? "filter blur-md" : "")
+        }
+      >
         <div className="flex justify-center items-center flex-col w-full h-full">
           <div className="flex justify-center items-center flex-col w-full h-full">
             <h1 className="text-5xl">Welcome to</h1>
@@ -36,8 +69,7 @@ const App = () => {
           </div>
         </div>
       </div>
-
-      <div className="col-span-1 w-full" />
+      <div className={"col-span-1 w-full " + (open ? "filter blur-md" : "")} />
     </div>
   );
 };
