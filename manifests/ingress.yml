@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/incress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "ingress"
+    nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+
+spec:
+  tls:
+  - hosts:
+    - api.knighthacks.org
+    - knighthacks.org
+    secretName: ingress-tls
+  rules:
+  - host: api.knighthacks.org
+    http:
+      paths:
+      - path: /api(/|$)(.*)
+        backend:
+          serviceName: backend-service
+          servicePort: 5000
+  - host: knighthacks.org
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: frontend-service
+          servicePort: 80

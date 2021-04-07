@@ -1,0 +1,17 @@
+FROM node:14.16.1 as dist
+
+RUN mkdir -p /home/frontend/app
+WORKDIR /home/frontend/app
+
+COPY package*.json ./
+
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+FROM nginx:alpine
+COPY --from=dist /home/frontend/app/build /usr/share/nginx/html
+COPY nginx.dev.conf /etc/nginx/nginx.conf
+
+CMD ["nginx", "-g", "daemon off;"]
