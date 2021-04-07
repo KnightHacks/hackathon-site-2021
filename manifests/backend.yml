@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: knighthacks/backend
+          image: <registry-name>.azurecr.io/backend
           ports:
             - containerPort: 5000
               name: backend-port
