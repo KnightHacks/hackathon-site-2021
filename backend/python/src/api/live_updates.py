@@ -7,17 +7,26 @@
 
         LiveUpdates
 
+    Fuctions:
+
+        new_update()
+        delete_all_updates()
+        delete_update(id: int)
+
 """
 from flask import Blueprint, request, current_app as app
 from werkzeug.exceptions import BadRequest
 from src.common.decorators import authenticate, privileges
 from flask_socketio import Namespace, emit
 from src.models.live_update import LiveUpdate
+from src.models.user import ROLES
 
 live_updates_blueprint = Blueprint("live_updates", __name__)
 
 
 @live_updates_blueprint.route("/live_updates/", methods=["PUT"])
+@authenticate
+@privileges(ROLES.MOD | ROLES.ADMIN)
 def new_update():
     """
     Adds an update
@@ -61,6 +70,8 @@ def new_update():
 
 
 @live_updates_blueprint.route("/live_updates/all/", methods=["DELETE"])
+@authenticate
+@privileges(ROLES.MOD | ROLES.ADMIN)
 def delete_all_updates():
     """
     Deletes all updates
@@ -86,6 +97,8 @@ def delete_all_updates():
 
 
 @live_updates_blueprint.route("/live_updates/<id>/", methods=["DELETE"])
+@authenticate
+@privileges(ROLES.MOD | ROLES.ADMIN)
 def delete_update(id: int):
     """
     Deletes an Update
