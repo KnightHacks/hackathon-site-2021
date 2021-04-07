@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: nginxsecret
+      containers:
+        - name: frontend
+          image: torrentofshame/frontend
+          imagePullPolicy: Never
+          ports:              
+            - containerPort: 8080
+            - containerPort: 443
+          env:
+            - name: NODE_ENV
+              value: "production"
+          volumeMounts:
+            - mountPath: /etc/nginx/ssl
+              name: secret-volume
+  selector:
+    matchLabels:
+      app: frontend

@@ -1,5 +1,7 @@
 FROM python:3.9.0-slim
 
+ENV TZ America/New_York
+
 WORKDIR /home/backend/app
 
 COPY requirements.txt .
