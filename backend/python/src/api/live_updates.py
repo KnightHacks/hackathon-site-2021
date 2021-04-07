@@ -81,6 +81,8 @@ def delete_all_updates():
     responses:
         201:
             description: OK
+        5XX:
+            description: Unexpected error.
     """
 
     LiveUpdate.drop_collection()
