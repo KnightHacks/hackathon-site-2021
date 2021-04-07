@@ -1,6 +1,8 @@
 # set base image (host OS)
 FROM python:3.9.0-slim
 
+ENV TZ America/New_York
+
 # set the working directory in the container
 WORKDIR /home/backend/app
 

@@ -20,7 +20,7 @@ class Group(BaseDocument):
     icon = db.StringField()
     members = db.ListField(db.ReferenceField(Hacker))
     categories = db.ListField(db.StringField())
-    date = db.DateTimeField(default=datetime.utcnow)
+    date = db.DateTimeField(default=datetime.now)
 
     @staticmethod
     def member_fields(member: Hacker) -> dict:
