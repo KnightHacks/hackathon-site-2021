@@ -69,8 +69,9 @@ jobs:
         manifests: |
           manifests/backend.yml
           manifests/frontend.yml
-          manifests/mongodb.yml
+          manifests/mongo.yml
           manifests/ingress.yml
+          manifests/rabbitmq.yml
         images: |
           ${{ env.REGISTRY_NAME }}.azurecr.io/frontend:${{ github.sha }}
           ${{ env.REGISTRY_NAME }}.azurecr.io/backend:${{ github.sha }}

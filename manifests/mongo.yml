@@ -1,19 +1,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb-service
+  name: kh-mongo
 spec:
   ports:
     - port: 27017
       protocol: TCP
   selector:
-    app: mongodb
+    app: kh-mongo
   type: ClusterIP
 ---
 apiVersion: v1
 kind: PersistantVolumeClaim
 metadata:
-  name: kh-mongo-bs-claim
+  name: kh-mongo-claim
 spec:
   storageClassName: azureDisk
   accessModes:
@@ -25,20 +25,19 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: mongodb
+  name: kh-mongo
   labels:
-    app: mongodb
+    app: kh-mongo
 spec:
   volumes:
-    - name: kh-mongo-storage
+    - name: kh-mongo-data
       persistantVolumeClaim:
-        claimName: kh-mongo-bs-claim
+        claimName: kh-mongo-claim
   containers:
-    - name: mongodb
+    - name: kh-mongo
       image: mongo
       ports:
         - containerPort: 27017
-          name: mongodb-port
       volumeMounts:
         - mountPath: "/data/db"
-          name: kh-mongo-storage
+          name: kh-mongo-data

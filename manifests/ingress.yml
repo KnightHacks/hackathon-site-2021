@@ -23,12 +23,12 @@ spec:
       paths:
       - path: /api(/|$)(.*)
         backend:
-          serviceName: backend-service
+          serviceName: kh-backend
           servicePort: 5000
   - host: knighthacks.org
     http:
       paths:
       - path: /
         backend:
-          serviceName: frontend-service
+          serviceName: kh-rontend
           servicePort: 80

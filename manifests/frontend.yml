@@ -1,33 +1,33 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-service
+  name: kh-frontend
+  labels:
+    app: kh-frontend
 spec:
   ports:
     - port: 80
       protocol: TCP
-      name: http
   selector:
-    app: frontend
+    app: kh-frontend
   type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
+  name: kh-frontend
 spec:
+  selector:
+    matchLabels:
+      app: kh-frontend
   replicas: 1
   template:
     metadata:
       labels:
-        app: frontend
+        app: kh-frontend
     spec:
       containers:
-        - name: frontend
+        - name: kh-frontend
           image: <registry-name>.azurecr.io/frontend
           ports:              
             - containerPort: 80
-
-  selector:
-    matchLabels:
-      app: frontend
