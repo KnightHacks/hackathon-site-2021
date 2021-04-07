@@ -63,11 +63,14 @@ const Landing = () => {
             <h1 className="text-5xl">Welcome to</h1>
             <div className="bg-knight-hacks-logo w-full h-36 bg-no-repeat my-4 bg-center" />
             <p className="text-xl">October 9th - October 11th, 2021</p>
-            <button className="px-12 py-2 border-white border-8 rounded-full text-4xl mt-8 hover:bg-blue-400 focus:outline-none">
+            <Link
+              className="px-12 py-2 border-white border-8 rounded-full text-4xl mt-8 hover:bg-blue-400 focus:outline-none"
+              to="/register"
+            >
               <p className="tracking-widest select-none" unselectable="on">
                 REGISTER
               </p>
-            </button>
+            </Link>
           </div>
           <div className="flex flex-row mt-auto mb-8 space-x-8 text-6xl">
             <a href="https://twitter.com/KnightHacks?lang=en/">
