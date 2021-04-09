@@ -11,9 +11,9 @@ const Menu = ({ open, setOpen }) => {
           : "")
       }
     >
-      <div className={"text-white mt-12 ml-8 w-min"}>
-        <div className="flex flex-col sm:flex-row-reverse space-y-4 sm:space-y-0 space-x-reverse space-x-8">
-          <div>
+      <div className="text-white mt-5 w-full sm:w-min px-8 lg:px-16">
+        <div className="inline-block sm:flex flex-row sm:space-x-8 w-full">
+          <div className="float-left">
             <CgMenu
               className="text-4xl md:text-5xl cursor-pointer"
               onClick={() => setOpen(!open)}
@@ -40,7 +40,8 @@ const Menu = ({ open, setOpen }) => {
           </div>
           <CgVolume
             className={
-              "text-4xl md:text-5xl cursor-pointer " + (open ? "invisible" : "")
+              "text-4xl md:text-5xl cursor-pointer float-right " +
+              (open ? "invisible" : "")
             }
           />
         </div>
