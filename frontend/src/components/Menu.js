@@ -11,32 +11,38 @@ const Menu = ({ open, setOpen }) => {
           : "")
       }
     >
-      <div className={"flex flex-row text-white space-x-8 mt-12 ml-20 w-min"}>
-        <CgVolume className="text-5xl cursor-pointer" />
-        <div>
-          <CgMenu
-            className="text-5xl cursor-pointer"
-            onClick={() => setOpen(!open)}
+      <div className={"text-white mt-12 ml-5 w-min"}>
+        <div className="flex flex-col sm:flex-row-reverse space-y-4 sm:space-y-0 space-x-reverse space-x-8">
+          <div>
+            <CgMenu
+              className="text-4xl md:text-5xl cursor-pointer"
+              onClick={() => setOpen(!open)}
+            />
+            {open ? (
+              <ul className="text-5xl text-white">
+                <li className="mt-4 hover:underline">
+                  <Link to="/about">About</Link>
+                </li>
+                <li className="mt-4 hover:underline">
+                  <Link to="/sponsors">Sponsors</Link>
+                </li>
+                <li className="mt-4 hover:underline">
+                  <Link to="/schedule">Schedule</Link>
+                </li>
+                <li className="mt-4 hover:underline">
+                  <Link to="/faq">FAQ</Link>
+                </li>
+                <li className="mt-4 hover:underline">
+                  <Link to="/register">Register</Link>
+                </li>
+              </ul>
+            ) : null}
+          </div>
+          <CgVolume
+            className={
+              "text-4xl md:text-5xl cursor-pointer " + (open ? "invisible" : "")
+            }
           />
-          {open ? (
-            <ul className="text-5xl text-white">
-              <li className="mt-4 hover:underline">
-                <Link to="/about">About</Link>
-              </li>
-              <li className="mt-4 hover:underline">
-                <Link to="/sponsors">Sponsors</Link>
-              </li>
-              <li className="mt-4 hover:underline">
-                <Link to="/schedule">Schedule</Link>
-              </li>
-              <li className="mt-4 hover:underline">
-                <Link to="/faq">FAQ</Link>
-              </li>
-              <li className="mt-4 hover:underline">
-                <Link to="/register">Register</Link>
-              </li>
-            </ul>
-          ) : null}
         </div>
       </div>
     </div>
