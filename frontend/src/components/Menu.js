@@ -11,7 +11,7 @@ const Menu = ({ open, setOpen }) => {
           : "")
       }
     >
-      <div className={"text-white mt-12 ml-5 w-min"}>
+      <div className={"text-white mt-12 ml-8 w-min"}>
         <div className="flex flex-col sm:flex-row-reverse space-y-4 sm:space-y-0 space-x-reverse space-x-8">
           <div>
             <CgMenu
