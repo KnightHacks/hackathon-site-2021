@@ -6,6 +6,11 @@ import Schedule from "./pages/Schedule";
 import FAQ from "./pages/FAQ";
 import Register from "./pages/Register";
 
+/**
+ * @desc Handles routing to all pages
+ * @author Abraham Hernandez
+ */
+
 const App = () => {
   return (
     <Router>
