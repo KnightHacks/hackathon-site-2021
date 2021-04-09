@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      width: {
+        "full-with-margins": "calc(100% - 30px)",
+      },
       backgroundImage: (theme) => ({
         "koi-fish-pond": "url('/src/assets/KoiFishPond.png')",
         "knight-hacks-logo": "url('/src/assets/KnightHacksLogo.svg')",

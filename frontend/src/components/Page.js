@@ -5,14 +5,14 @@ const Page = ({ children, onLanding }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-koi-fish-pond bg-no-repeat bg-cover w-full h-screen grid grid-cols-5 grid-rows-1 grid-flow-col gap-0">
-      <div className="col-span-1 w-full">
+    <div className="bg-koi-fish-pond bg-no-repeat bg-cover w-full h-screen flex flex-col items-center sm:items-start sm:grid sm:grid-cols-5 sm:grid-rows-1 sm:grid-flow-col sm:gap-0">
+      <div className="sm:col-span-1 w-full">
         <Menu open={open} setOpen={setOpen} />
       </div>
 
       <div
         className={
-          "col-span-3 text-white w-full bg-landing-transparent " +
+          "sm:col-span-3 text-white w-full-with-margins h-full bg-landing-transparent rounded-2xl " +
           (open ? "filter blur-md" : "")
         }
       >
