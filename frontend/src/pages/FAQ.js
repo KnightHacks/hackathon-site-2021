@@ -1,4 +1,25 @@
+import { useState } from "react";
 import Page from "../components/Page";
+
+const Dropdown = ({ item }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="w-full px-12 mt-5 flex flex-wrap">
+      <p
+        className="text-left text-lg sm:text-xl w-full cursor-pointer"
+        onClick={() => setOpen(!open)}
+      >
+        {item.question}
+      </p>
+      {open ? (
+        <p className="text-left text-base sm:text-lg text-gray-200 ">
+          {item.answer}
+        </p>
+      ) : null}
+    </div>
+  );
+};
 
 const FAQ = () => {
   const list = [
@@ -45,17 +66,12 @@ const FAQ = () => {
 
   return (
     <Page>
-      <div className="flex justify-start items-center w-full flex-col my-12">
-        <h1 className="text-8xl">FAQ</h1>
+      <div className="flex justify-start items-center w-full flex-col my-4 sm:my-8 md:my-12">
+        <h1 className=" text-4xl sm:text-6xl md:text-8xl">FAQ</h1>
 
-        <div className="mt-8 flex flex-col items-center w-full">
+        <div className="my-4 sm:my-8 flex flex-col items-center w-full">
           {list.map((item, index) => (
-            <div
-              key={index}
-              className="w-full px-12 text-xl mt-5 flex flex-wrap"
-            >
-              <p className="text-left w-full">{item.question}</p>
-            </div>
+            <Dropdown item={item} key={index} />
           ))}
         </div>
       </div>
