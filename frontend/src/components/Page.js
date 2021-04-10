@@ -18,7 +18,7 @@ const Page = ({ children, onLanding }) => {
 
       <div
         className={
-          "sm:col-span-3 text-white w-full-with-margins h-full bg-landing-transparent rounded-2xl " +
+          "sm:col-span-3 text-white w-full-with-margins h-full bg-landing-transparent rounded-2xl overflow-auto " +
           (open ? "filter blur-md" : "")
         }
       >
