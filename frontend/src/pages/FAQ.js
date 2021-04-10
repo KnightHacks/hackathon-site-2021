@@ -13,7 +13,7 @@ const Dropdown = ({ item }) => {
         {item.question}
       </p>
       {open ? (
-        <p className="text-left text-base sm:text-lg text-gray-200 ">
+        <p className="text-left text-base sm:text-lg text-gray-200">
           {item.answer}
         </p>
       ) : null}
