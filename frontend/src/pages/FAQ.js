@@ -1,19 +1,20 @@
 import { useState } from "react";
 import Page from "../components/Page";
 
-const Dropdown = ({ item }) => {
-  const [open, setOpen] = useState(false);
-
+const Dropdown = ({ item, index, open, setOpen }) => {
   return (
     <div className="w-full px-12 mt-5 flex flex-wrap">
       <p
         className="text-left text-lg sm:text-xl w-full cursor-pointer"
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          if (open === index) setOpen(-1);
+          else setOpen(index);
+        }}
       >
         {item.question}
       </p>
-      {open ? (
-        <p className="text-left text-base sm:text-lg text-gray-200">
+      {open === index ? (
+        <p className="text-left text-base sm:text-lg text-gray-200 ml-4">
           {item.answer}
         </p>
       ) : null}
@@ -63,7 +64,7 @@ const FAQ = () => {
       answer: "The event uses the MLH code of conduct which can be found here",
     },
   ];
-
+  const [open, setOpen] = useState(-1);
   return (
     <Page>
       <div className="flex justify-start items-center w-full flex-col my-4 sm:my-8 md:my-12">
@@ -71,7 +72,13 @@ const FAQ = () => {
 
         <div className="my-4 sm:my-8 flex flex-col items-center w-full">
           {list.map((item, index) => (
-            <Dropdown item={item} key={index} />
+            <Dropdown
+              item={item}
+              key={index}
+              index={index}
+              setOpen={setOpen}
+              open={open}
+            />
           ))}
         </div>
       </div>
