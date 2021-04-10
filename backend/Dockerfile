@@ -9,5 +9,5 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT [ "python" ]
-CMD [ "-m", "src", "run", "--host=0.0.0.0", "--port=5000" ]
+ENTRYPOINT [ "gunicorn" ]
+CMD [ "-b 0.0.0.0:5000", "src:create_app()" ]
