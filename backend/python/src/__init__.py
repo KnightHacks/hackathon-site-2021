@@ -87,8 +87,8 @@ def create_app():
 
     """Set FLASK_ENV and FLASK_DEBUG cause that doesn't happen auto anymore"""
     if app.config.get("DEBUG"):
-        environ["FLASK_ENV"] = "development"
-        environ["FLASK_DEBUG"] = "1"
+        environ["FLASK_ENV"] = "development"  # pragma: nocover
+        environ["FLASK_DEBUG"] = "1"  # pragma: nocover
 
     """Setup Extensions"""
     CORS(app)
@@ -110,6 +110,7 @@ def create_app():
     from src.api.categories import categories_blueprint
     from src.api.email_verification import email_verify_blueprint
     from src.api.auth import auth_blueprint
+    from src.api.admin import admin_blueprint
 
     app.register_blueprint(hackers_blueprint, url_prefix="/api")
     app.register_blueprint(stats_blueprint, url_prefix="/api")
@@ -120,6 +121,7 @@ def create_app():
     app.register_blueprint(categories_blueprint, url_prefix="/api")
     app.register_blueprint(email_verify_blueprint, url_prefix="/api")
     app.register_blueprint(auth_blueprint, url_prefix="/api")
+    app.register_blueprint(admin_blueprint, url_prefix="/api")
 
     """Register Error Handlers"""
     from src.common import error_handlers
