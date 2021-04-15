@@ -1,5 +1,7 @@
+import Page from "../components/Page";
+
 const Schedule = () => {
-  return <div>Schedule Page</div>;
+  return <Page onLanding={true} />;
 };
 
 export default Schedule;
