@@ -15,7 +15,11 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        {/* We forward to AppWithTransitions so we can animate the transitions */}
+        {/*
+         * We forward to AppWithTransitions so we can animate the transitions.
+         * Don't put more routes here, instead put them in the
+         * AppWithTransitions component.
+         */}
         <Route path="*">
           <AppWithTransitions />
         </Route>
@@ -29,6 +33,7 @@ const AppWithTransitions = () => {
   return (
     <TransitionGroup>
       <CSSTransition key={location.key} classNames="blur" timeout={1000}>
+        {/* You can edit the routes here */}
         <Switch location={location}>
           <Route exact path="/" component={Landing} />
           <Route path="/about" component={About} />
