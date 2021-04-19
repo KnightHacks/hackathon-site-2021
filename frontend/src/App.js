@@ -12,8 +12,8 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useLocation } from "react-router-dom";
 
 /**
- * @desc Handles routing to all pages
- * @author Abraham Hernandez
+ * @desc See AppWithTransitions; don't make routing changes here
+ * @author Abraham Hernandez, Rob
  */
 const App = () => {
   return (
@@ -32,6 +32,11 @@ const App = () => {
   );
 };
 
+/**
+ * @desc AppWithTransitions is like App but it wraps every page transition to
+ *       have a nice blur-up effect.
+ * @author Rob
+ */
 const AppWithTransitions = () => {
   const location = useLocation();
   return (
