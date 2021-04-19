@@ -57,8 +57,13 @@ const Menu = ({ open, setOpen }) => {
                   className="text-4xl md:text-5xl cursor-pointer"
                   onClick={() => setOpen(!open)}
                 />
-                <div className="flex-1 sm:flex-none flex justify-end">
-                  <CgVolume className="text-4xl md:text-5xl cursor-pointer" />
+                <div
+                  className={
+                    "flex-1 sm:flex-none flex justify-end " +
+                    (open ? "filter blur-md" : "cursor-pointer")
+                  }
+                >
+                  <CgVolume className="text-4xl md:text-5xl" />
                 </div>
               </Dialog.Title>
               <Transition.Child
