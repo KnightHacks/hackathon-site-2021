@@ -48,7 +48,7 @@ const Menu = ({ open, setOpen }) => {
               <Dialog.Overlay className="fixed inset-0 bg-menu-transparent" />
             </Transition.Child>
 
-            <div className="inline-block w-full px-5 pt-6 mt-8 overflow-hidden text-left align-middle transition-all transform">
+            <div className="inline-block w-full px-5 pt-6 mt-8 text-left align-middle transition-all transform">
               <Dialog.Title
                 as="div"
                 className="leading-6 text-white flex flex-row sm:space-x-8"
@@ -72,6 +72,9 @@ const Menu = ({ open, setOpen }) => {
               >
                 <div className="mt-2">
                   <ul className="text-4xl sm:text-5xl text-white">
+                    <li className="mt-4 hover:underline">
+                      <Link to="/">Home</Link>
+                    </li>
                     <li className="mt-4 hover:underline">
                       <Link to="/about">About</Link>
                     </li>
