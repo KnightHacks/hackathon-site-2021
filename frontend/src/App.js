@@ -15,6 +15,7 @@ const App = () => {
   return (
     <Router>
       <Switch>
+        {/* We forward to AppWithTransitions so we can animate the transitions */}
         <Route path="*">
           <AppWithTransitions />
         </Route>
@@ -27,7 +28,7 @@ const AppWithTransitions = () => {
   const location = useLocation();
   return (
     <TransitionGroup>
-      <CSSTransition key={location.key} classNames="fade" timeout={1000}>
+      <CSSTransition key={location.key} classNames="blur" timeout={1000}>
         <Switch location={location}>
           <Route exact path="/" component={Landing} />
           <Route path="/about" component={About} />
