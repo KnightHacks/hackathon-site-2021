@@ -1,28 +1,6 @@
-import { useState } from "react";
 import Page from "../components/Page";
 import { Disclosure, Transition } from "@headlessui/react";
 import { HiChevronDown } from "react-icons/hi";
-
-const Dropdown = ({ item, index, open, setOpen }) => {
-  return (
-    <div className="w-full px-12 mt-5 flex flex-wrap">
-      <p
-        className="text-left text-lg sm:text-xl w-full cursor-pointer"
-        onClick={() => {
-          if (open === index) setOpen(-1);
-          else setOpen(index);
-        }}
-      >
-        {item.question}
-      </p>
-      {open === index ? (
-        <p className="text-left text-base sm:text-lg text-gray-200 ml-4">
-          {item.answer}
-        </p>
-      ) : null}
-    </div>
-  );
-};
 
 /**
  * @desc Renders FAQ page using dropdowns
@@ -75,14 +53,14 @@ const FAQ = () => {
   return (
     <Page onLanding={false}>
       <div className="flex justify-start items-center w-full flex-col my-4 md:my-12">
-        <h1 className=" text-4xl sm:text-6xl md:text-8xl">FAQ</h1>
+        <h1 className="text-4xl sm:text-6xl md:text-8xl">FAQ</h1>
 
         <div className="my-4 flex flex-col items-center w-2/3">
           {list.map((item) => (
             <Disclosure as="div" className="mb-2 w-full">
               {({ open }) => (
                 <>
-                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
+                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-xl font-medium text-left text-gray-900 bg-blue-100 rounded-lg hover:bg-blue-200 bg-opacity-70 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
                     <span>{item.question}</span>
                     <HiChevronDown
                       className={`${
@@ -101,7 +79,7 @@ const FAQ = () => {
                   >
                     <Disclosure.Panel
                       static
-                      className="text-left text-base sm:text-lg text-gray-700 ml-4"
+                      className="text-left text-base sm:text-lg text-gray-700 ml-4 px-8 mb-4"
                     >
                       {item.answer}
                     </Disclosure.Panel>
