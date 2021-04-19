@@ -1,0 +1,9 @@
+.fade-enter {
+  filter: blur(12px);
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  filter: blur(0);
+  transition: filter 200ms ease-in;
+}
