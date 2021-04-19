@@ -1,10 +1,15 @@
-<h6>ISSUE</h6>
+###### ISSUE
+
 Resolves issue(s) #X.
 
-<h6>DESCRIPTION</h6>
+###### DESCRIPTION
+
 Description of what this PR does.
 
-<h6>CHECKLIST</h6>
-✓ / ✗ Code is commented</br>
-✓ / ✗ Responsiveness across viewports</br>
-✓ / ✗ Labeled "frontend"</br>
+###### CHECKLIST
+
+✓ / ✗ Code is commented
+
+✓ / ✗ Responsiveness across viewports
+
+✓ / ✗ Labeled "frontend"
