@@ -1,6 +1,12 @@
 import { CgMenu, CgVolume } from "react-icons/cg";
 import { Link } from "react-router-dom";
 
+/**
+ * @desc Renders menu component containing nav menu and volume
+ * @param Takes a piece of state and its update function for when the menu is opened
+ * @author Abraham Hernandez
+ */
+
 const Menu = ({ open, setOpen }) => {
   return (
     <div

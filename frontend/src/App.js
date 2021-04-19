@@ -11,6 +11,10 @@ import Register from "./pages/Register";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useLocation } from "react-router-dom";
 
+/**
+ * @desc Handles routing to all pages
+ * @author Abraham Hernandez
+ */
 const App = () => {
   return (
     <Router>

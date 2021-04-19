@@ -1,6 +1,12 @@
 import { useState } from "react";
 import Menu from "./Menu";
 
+/**
+ * @desc Renders template layout for all pages
+ * @param Takes the children JSX elements and a boolean value thats true if the current page is the Landing page
+ * @author Abraham Hernandez
+ */
+
 const Page = ({ children, onLanding }) => {
   const [open, setOpen] = useState(false);
 
