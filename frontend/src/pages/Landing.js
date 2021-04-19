@@ -2,6 +2,11 @@ import { FaTwitter, FaInstagram, FaFacebookF } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Page from "../components/Page";
 
+/**
+ * @desc Renders Landing page of the site
+ * @author Abraham Hernandez
+ */
+
 const Landing = () => {
   return (
     <Page onLanding={true}>
