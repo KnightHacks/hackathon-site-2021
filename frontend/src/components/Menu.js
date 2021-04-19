@@ -73,22 +73,34 @@ const Menu = ({ open, setOpen }) => {
                 <div className="mt-2">
                   <ul className="text-4xl sm:text-5xl text-white">
                     <li className="mt-4 hover:underline">
-                      <Link to="/">Home</Link>
+                      <Link to="/" onClick={() => setOpen(false)}>
+                        Home
+                      </Link>
                     </li>
                     <li className="mt-4 hover:underline">
-                      <Link to="/about">About</Link>
+                      <Link to="/about" onClick={() => setOpen(false)}>
+                        About
+                      </Link>
                     </li>
                     <li className="mt-4 hover:underline">
-                      <Link to="/sponsors">Sponsors</Link>
+                      <Link to="/sponsors" onClick={() => setOpen(false)}>
+                        Sponsors
+                      </Link>
                     </li>
                     <li className="mt-4 hover:underline">
-                      <Link to="/schedule">Schedule</Link>
+                      <Link to="/schedule" onClick={() => setOpen(false)}>
+                        Schedule
+                      </Link>
                     </li>
                     <li className="mt-4 hover:underline">
-                      <Link to="/faq">FAQ</Link>
+                      <Link to="/faq" onClick={() => setOpen(false)}>
+                        FAQ
+                      </Link>
                     </li>
                     <li className="mt-4 hover:underline">
-                      <Link to="/register">Register</Link>
+                      <Link to="/register" onClick={() => setOpen(false)}>
+                        Register
+                      </Link>
                     </li>
                   </ul>
                 </div>
