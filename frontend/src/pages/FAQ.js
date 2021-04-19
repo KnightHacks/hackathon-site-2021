@@ -22,6 +22,11 @@ const Dropdown = ({ item, index, open, setOpen }) => {
   );
 };
 
+/**
+ * @desc Renders FAQ page using dropdowns
+ * @author Abraham Hernandez
+ */
+
 const FAQ = () => {
   const list = [
     {
