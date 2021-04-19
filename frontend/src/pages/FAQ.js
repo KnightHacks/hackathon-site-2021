@@ -66,11 +66,11 @@ const FAQ = () => {
   ];
   const [open, setOpen] = useState(-1);
   return (
-    <Page>
-      <div className="flex justify-start items-center w-full flex-col my-4 sm:my-8 md:my-12">
+    <Page onLanding={false}>
+      <div className="flex justify-start items-center w-full flex-col my-4 md:my-12">
         <h1 className=" text-4xl sm:text-6xl md:text-8xl">FAQ</h1>
 
-        <div className="my-4 sm:my-8 flex flex-col items-center w-full">
+        <div className="my-4 flex flex-col items-center w-full">
           {list.map((item, index) => (
             <Dropdown
               item={item}
