@@ -1,5 +1,6 @@
 import { Fragment } from "react";
-import { CgMenu, CgVolume } from "react-icons/cg";
+import { CgMenu } from "react-icons/cg";
+import { RiVolumeUpFill } from "react-icons/ri";
 import { Dialog, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 
@@ -14,7 +15,7 @@ const Menu = ({ open, setOpen }) => {
     <div className="flex justify-center w-screen">
       <div
         className={
-          "leading-6 text-white flex flex-row sm:space-x-8 w-full px-5 pt-6 mt-8 " +
+          "text-white flex flex-row sm:space-x-8 w-full px-6 pt-6 mt-8 " +
           (open ? "hidden" : "visible")
         }
       >
@@ -23,7 +24,7 @@ const Menu = ({ open, setOpen }) => {
           onClick={() => setOpen(!open)}
         />
         <div className="flex-1 sm:flex-none flex justify-end">
-          <CgVolume className="text-4xl md:text-5xl cursor-pointer" />
+          <RiVolumeUpFill className="text-4xl md:text-5xl cursor-pointer" />
         </div>
       </div>
       <Transition show={open} as={Fragment}>
@@ -48,7 +49,7 @@ const Menu = ({ open, setOpen }) => {
               <Dialog.Overlay className="fixed inset-0 bg-menu-transparent" />
             </Transition.Child>
 
-            <div className="inline-block w-full px-5 pt-6 mt-8 text-left align-middle transition-all transform">
+            <div className="inline-block w-full px-6 pt-6 mt-8 text-left align-middle transition-all transform">
               <Dialog.Title
                 as="div"
                 className="leading-6 text-white flex flex-row sm:space-x-8"
@@ -63,7 +64,7 @@ const Menu = ({ open, setOpen }) => {
                     (open ? "filter blur-md" : "cursor-pointer")
                   }
                 >
-                  <CgVolume className="text-4xl md:text-5xl" />
+                  <RiVolumeUpFill className="text-4xl md:text-5xl" />
                 </div>
               </Dialog.Title>
               <Transition.Child
@@ -75,34 +76,34 @@ const Menu = ({ open, setOpen }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <div className="mt-2">
-                  <ul className="text-4xl sm:text-5xl text-white">
-                    <li className="mt-4 hover:underline">
+                <div className="mt-2 inline-block">
+                  <ul className="text-4xl sm:text-5xl text-white inline-flex flex-col">
+                    <li className="mt-4 hover:underline inline-block">
                       <Link to="/" onClick={() => setOpen(false)}>
                         Home
                       </Link>
                     </li>
-                    <li className="mt-4 hover:underline">
+                    <li className="mt-4 hover:underline inline-block">
                       <Link to="/about" onClick={() => setOpen(false)}>
                         About
                       </Link>
                     </li>
-                    <li className="mt-4 hover:underline">
+                    <li className="mt-4 hover:underline inline-block">
                       <Link to="/sponsors" onClick={() => setOpen(false)}>
                         Sponsors
                       </Link>
                     </li>
-                    <li className="mt-4 hover:underline">
+                    <li className="mt-4 hover:underline inline-block">
                       <Link to="/schedule" onClick={() => setOpen(false)}>
                         Schedule
                       </Link>
                     </li>
-                    <li className="mt-4 hover:underline">
+                    <li className="mt-4 hover:underline inline-block">
                       <Link to="/faq" onClick={() => setOpen(false)}>
                         FAQ
                       </Link>
                     </li>
-                    <li className="mt-4 hover:underline">
+                    <li className="mt-4 hover:underline inline-block">
                       <Link to="/register" onClick={() => setOpen(false)}>
                         Register
                       </Link>
