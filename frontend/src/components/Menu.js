@@ -79,7 +79,11 @@ const Menu = ({ open, setOpen }) => {
                 <div className="mt-2 inline-block">
                   <ul className="text-4xl sm:text-5xl text-white inline-flex flex-col">
                     <li className="mt-4 inline-block hover:text-5xl sm:hover:text-7xl hover:transition ease-linear duration-200">
-                      <Link to="/" onClick={() => setOpen(false)}>
+                      <Link
+                        to="/"
+                        onClick={() => setOpen(false)}
+                        className="focus:outline-none"
+                      >
                         Home
                       </Link>
                     </li>
@@ -87,7 +91,7 @@ const Menu = ({ open, setOpen }) => {
                       <Link
                         to="/about"
                         onClick={() => setOpen(false)}
-                        className="hover:text-5xl sm:hover:text-7xl"
+                        className="focus:outline-none"
                       >
                         About
                       </Link>
@@ -96,7 +100,7 @@ const Menu = ({ open, setOpen }) => {
                       <Link
                         to="/sponsors"
                         onClick={() => setOpen(false)}
-                        className="hover:text-5xl sm:hover:text-7xl"
+                        className="focus:outline-none"
                       >
                         Sponsors
                       </Link>
@@ -105,7 +109,7 @@ const Menu = ({ open, setOpen }) => {
                       <Link
                         to="/schedule"
                         onClick={() => setOpen(false)}
-                        className="hover:text-5xl sm:hover:text-7xl"
+                        className="focus:outline-none"
                       >
                         Schedule
                       </Link>
@@ -114,7 +118,7 @@ const Menu = ({ open, setOpen }) => {
                       <Link
                         to="/faq"
                         onClick={() => setOpen(false)}
-                        className="hover:text-5xl sm:hover:text-7xl"
+                        className="focus:outline-none"
                       >
                         FAQ
                       </Link>
@@ -123,7 +127,7 @@ const Menu = ({ open, setOpen }) => {
                       <Link
                         to="/register"
                         onClick={() => setOpen(false)}
-                        className="hover:text-5xl sm:hover:text-7xl"
+                        className="focus:outline-none"
                       >
                         Register
                       </Link>
