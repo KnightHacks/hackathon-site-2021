@@ -78,33 +78,57 @@ const Menu = ({ open, setOpen }) => {
               >
                 <div className="mt-2 inline-block">
                   <ul className="text-4xl sm:text-5xl text-white inline-flex flex-col">
-                    <li className="mt-4 hover:underline inline-block">
-                      <Link to="/" onClick={() => setOpen(false)}>
+                    <li className="mt-4 inline-block">
+                      <Link
+                        to="/"
+                        onClick={() => setOpen(false)}
+                        className="hover:text-5xl sm:hover:text-6xl"
+                      >
                         Home
                       </Link>
                     </li>
-                    <li className="mt-4 hover:underline inline-block">
-                      <Link to="/about" onClick={() => setOpen(false)}>
+                    <li className="mt-4 inline-block">
+                      <Link
+                        to="/about"
+                        onClick={() => setOpen(false)}
+                        className="hover:text-5xl sm:hover:text-6xl"
+                      >
                         About
                       </Link>
                     </li>
-                    <li className="mt-4 hover:underline inline-block">
-                      <Link to="/sponsors" onClick={() => setOpen(false)}>
+                    <li className="mt-4 inline-block">
+                      <Link
+                        to="/sponsors"
+                        onClick={() => setOpen(false)}
+                        className="hover:text-5xl sm:hover:text-6xl"
+                      >
                         Sponsors
                       </Link>
                     </li>
-                    <li className="mt-4 hover:underline inline-block">
-                      <Link to="/schedule" onClick={() => setOpen(false)}>
+                    <li className="mt-4 inline-block">
+                      <Link
+                        to="/schedule"
+                        onClick={() => setOpen(false)}
+                        className="hover:text-5xl sm:hover:text-6xl"
+                      >
                         Schedule
                       </Link>
                     </li>
-                    <li className="mt-4 hover:underline inline-block">
-                      <Link to="/faq" onClick={() => setOpen(false)}>
+                    <li className="mt-4 inline-block">
+                      <Link
+                        to="/faq"
+                        onClick={() => setOpen(false)}
+                        className="hover:text-5xl sm:hover:text-6xl"
+                      >
                         FAQ
                       </Link>
                     </li>
-                    <li className="mt-4 hover:underline inline-block">
-                      <Link to="/register" onClick={() => setOpen(false)}>
+                    <li className="mt-4 inline-block">
+                      <Link
+                        to="/register"
+                        onClick={() => setOpen(false)}
+                        className="hover:text-5xl sm:hover:text-6xl"
+                      >
                         Register
                       </Link>
                     </li>
