@@ -78,56 +78,52 @@ const Menu = ({ open, setOpen }) => {
               >
                 <div className="mt-2 inline-block">
                   <ul className="text-4xl sm:text-5xl text-white inline-flex flex-col">
-                    <li className="mt-4 inline-block">
-                      <Link
-                        to="/"
-                        onClick={() => setOpen(false)}
-                        className="hover:text-5xl sm:hover:text-6xl"
-                      >
+                    <li className="mt-4 inline-block hover:text-5xl sm:hover:text-7xl hover:transition ease-linear duration-200">
+                      <Link to="/" onClick={() => setOpen(false)}>
                         Home
                       </Link>
                     </li>
-                    <li className="mt-4 inline-block">
+                    <li className="mt-4 inline-block hover:text-5xl sm:hover:text-7xl hover:transition ease-linear duration-200">
                       <Link
                         to="/about"
                         onClick={() => setOpen(false)}
-                        className="hover:text-5xl sm:hover:text-6xl"
+                        className="hover:text-5xl sm:hover:text-7xl"
                       >
                         About
                       </Link>
                     </li>
-                    <li className="mt-4 inline-block">
+                    <li className="mt-4 inline-block hover:text-5xl sm:hover:text-7xl hover:transition ease-linear duration-200">
                       <Link
                         to="/sponsors"
                         onClick={() => setOpen(false)}
-                        className="hover:text-5xl sm:hover:text-6xl"
+                        className="hover:text-5xl sm:hover:text-7xl"
                       >
                         Sponsors
                       </Link>
                     </li>
-                    <li className="mt-4 inline-block">
+                    <li className="mt-4 inline-block hover:text-5xl sm:hover:text-7xl hover:transition ease-linear duration-200">
                       <Link
                         to="/schedule"
                         onClick={() => setOpen(false)}
-                        className="hover:text-5xl sm:hover:text-6xl"
+                        className="hover:text-5xl sm:hover:text-7xl"
                       >
                         Schedule
                       </Link>
                     </li>
-                    <li className="mt-4 inline-block">
+                    <li className="mt-4 inline-block hover:text-5xl sm:hover:text-7xl hover:transition ease-linear duration-200">
                       <Link
                         to="/faq"
                         onClick={() => setOpen(false)}
-                        className="hover:text-5xl sm:hover:text-6xl"
+                        className="hover:text-5xl sm:hover:text-7xl"
                       >
                         FAQ
                       </Link>
                     </li>
-                    <li className="mt-4 inline-block">
+                    <li className="mt-4 inline-block hover:text-5xl sm:hover:text-7xl hover:transition ease-linear duration-200">
                       <Link
                         to="/register"
                         onClick={() => setOpen(false)}
-                        className="hover:text-5xl sm:hover:text-6xl"
+                        className="hover:text-5xl sm:hover:text-7xl"
                       >
                         Register
                       </Link>
