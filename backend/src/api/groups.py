@@ -103,6 +103,12 @@ def edit_group(group_name: str):
     if not update:
         raise BadRequest()
 
+    for k, email in enumerate(update["members"]):
+        member = Hacker.objects(email=email).first()
+        if not member:
+            raise NotFound(description="Group Member(s) does not exist.")
+        update["members"][k] = member
+
     group = Group.objects(name=group_name)
     if not group:
         raise NotFound()
