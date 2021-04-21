@@ -1,5 +1,8 @@
 import Page from "../components/Page";
 
+// for testing only, not for final production
+import TestLogo from "../assets/KnightHacksLogo.svg";
+
 const Sponsors = () => {
   return (
     <Page onLanding={false}>
@@ -14,6 +17,23 @@ const Sponsors = () => {
       >
         Our Sponsors
       </h1>
+      <div className="flex flex-col flex-wrap content-center">
+        <img
+          className="w-2/3 xl:w-96 ml-36 mt-20"
+          src={TestLogo}
+          alt="test logo"
+        />
+        <img
+          className="w-2/3 xl:w-96 mr-36 mt-20 transform rotate-180"
+          src={TestLogo}
+          alt="test logo"
+        />
+        <img
+          className="w-2/3 xl:w-96 ml-36 mt-20"
+          src={TestLogo}
+          alt="test logo"
+        />
+      </div>
     </Page>
   );
 };
