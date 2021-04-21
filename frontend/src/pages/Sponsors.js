@@ -3,6 +3,10 @@ import Page from "../components/Page";
 // for testing only, not for final production
 import TestLogo from "../assets/KnightHacksLogo.svg";
 
+/**
+ * @desc sponsors page; still WIP since we are waiting on sponsors
+ * @author Rob
+ */
 const Sponsors = () => {
   return (
     <Page onLanding={false}>
