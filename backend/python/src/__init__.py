@@ -24,6 +24,9 @@ from flask_cors import CORS
 from flask_mongoengine import MongoEngine
 from flask_mail import Mail
 from flask_bcrypt import Bcrypt
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
+from sentry_sdk.integrations.celery import CeleryIntegration
 from src.tasks import make_celery
 import yaml
 
@@ -89,6 +92,14 @@ def create_app():
     if app.config.get("DEBUG"):
         environ["FLASK_ENV"] = "development"
         environ["FLASK_DEBUG"] = "1"
+    elif not app.config.get("TESTING"):
+        """Initialize Sentry if we're in production"""
+        sentry_sdk.init(
+            dsn=getenv("SENTRY_DSN"),
+            integrations=[FlaskIntegration(), CeleryIntegration()],
+            traces_sample_rate=1.0
+        )
+
 
     """Setup Extensions"""
     CORS(app)
