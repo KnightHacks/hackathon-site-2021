@@ -152,7 +152,7 @@ def delete_update(_, id: int):
 class LiveUpdates(Namespace):
 
     def on_connect(self):
-        app.logger.debug("Someone connected to the /live_updates wss namespace")
+        app.logger.debug("Someone connected to /live_updates wss namespace")
         lups = LiveUpdate.objects.exclude("id")
 
         self.emit("hello", lups)
@@ -160,7 +160,7 @@ class LiveUpdates(Namespace):
     def on_disconnect(self):
         pass
 
-    def on_reload(self, _ = None):
+    def on_reload(self, _=None):
         lups = LiveUpdate.objects.exclude("id")
 
         self.emit("reload", lups)
