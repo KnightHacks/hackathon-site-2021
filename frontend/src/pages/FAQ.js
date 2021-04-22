@@ -14,8 +14,8 @@ const FAQ = () => {
         <h1 className="text-4xl sm:text-6xl md:text-8xl">FAQ</h1>
 
         <div className="my-4 flex flex-col items-center w-2/3">
-          {list.map((item) => (
-            <Disclosure as="div" className="mb-2 w-full">
+          {list.map((item, index) => (
+            <Disclosure as="div" className="mb-2 w-full" key={index}>
               {({ open }) => (
                 <>
                   <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-xl font-medium text-left text-gray-900 bg-blue-100 rounded-lg hover:bg-blue-200 bg-opacity-70 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
@@ -38,9 +38,8 @@ const FAQ = () => {
                     <Disclosure.Panel
                       static
                       className="text-left text-base sm:text-lg text-gray-700 ml-4 px-8 mb-4"
-                    >
-                      {item.answer}
-                    </Disclosure.Panel>
+                      dangerouslySetInnerHTML={{ __html: item.answer }}
+                    />
                   </Transition>
                 </>
               )}
