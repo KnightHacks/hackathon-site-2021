@@ -15,7 +15,7 @@
 
 """
 from flask import Blueprint, request, current_app as app
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import BadRequest, NotFound
 from src.common.decorators import authenticate, privileges
 from flask_socketio import Namespace, emit
 from src.models.live_update import LiveUpdate
@@ -27,7 +27,7 @@ live_updates_blueprint = Blueprint("live_updates", __name__)
 @live_updates_blueprint.route("/live_updates/", methods=["PUT"])
 @authenticate
 @privileges(ROLES.MOD | ROLES.ADMIN)
-def new_update():
+def new_update(_):
     """
     Adds an update
     ---
@@ -58,7 +58,10 @@ def new_update():
 
     from src.tasks.socket_tasks import broadcast_ws_event
     broadcast_ws_event("new", {
-        "data": lup
+        "data": {
+            "ID": lup.ID,
+            "message": data.get("message")
+        }
     }, "/liveupdates")
 
     res = {
@@ -72,7 +75,7 @@ def new_update():
 @live_updates_blueprint.route("/live_updates/all/", methods=["DELETE"])
 @authenticate
 @privileges(ROLES.MOD | ROLES.ADMIN)
-def delete_all_updates():
+def delete_all_updates(_):
     """
     Deletes all updates
     ---
@@ -101,7 +104,7 @@ def delete_all_updates():
 @live_updates_blueprint.route("/live_updates/<id>/", methods=["DELETE"])
 @authenticate
 @privileges(ROLES.MOD | ROLES.ADMIN)
-def delete_update(id: int):
+def delete_update(_, id: int):
     """
     Deletes an Update
     ---
@@ -123,7 +126,12 @@ def delete_update(id: int):
             description: Unexpected error.
     """
 
-    LiveUpdate.objects(ID=id).delete()
+    to_delete = LiveUpdate.objects(ID=id).first()
+
+    if not to_delete:
+        raise NotFound(f"LiveUpdate with the ID ${id} does not exist.")
+
+    to_delete.delete()
 
     from src.tasks.socket_tasks import broadcast_ws_event
     broadcast_ws_event("delete", {
@@ -144,7 +152,7 @@ def delete_update(id: int):
 class LiveUpdates(Namespace):
 
     def on_connect(self):
-        app.logger.debug("Someone connected")
+        app.logger.debug("Someone connected to the /live_updates wss namespace")
         lups = LiveUpdate.objects.exclude("id")
 
         self.emit("hello", lups)
@@ -152,7 +160,7 @@ class LiveUpdates(Namespace):
     def on_disconnect(self):
         pass
 
-    def on_reload(self, _):
+    def on_reload(self, _ = None):
         lups = LiveUpdate.objects.exclude("id")
 
         self.emit("reload", lups)
