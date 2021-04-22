@@ -17,7 +17,7 @@
 from flask import Blueprint, request, current_app as app
 from werkzeug.exceptions import BadRequest, NotFound
 from src.common.decorators import authenticate, privileges
-from flask_socketio import Namespace, emit
+from flask_socketio import Namespace
 from src.models.live_update import LiveUpdate
 from src.models.user import ROLES
 

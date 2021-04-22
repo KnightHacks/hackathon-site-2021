@@ -21,3 +21,4 @@ class Group(BaseDocument):
     members = db.ListField(db.ReferenceField(Hacker))
     categories = db.ListField(db.StringField())
     date = db.DateTimeField(default=datetime.now)
+
