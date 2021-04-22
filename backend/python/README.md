@@ -60,7 +60,7 @@ The **hello** event sends a json message containing a list of all the LiveUpdate
 
 A LiveUpdate object will look like
 
-```json
+```js
 {
   "ID": number,
   "message": "string",
@@ -77,7 +77,7 @@ You can request the entire list of LiveUpdates from the server by sending a **re
 
 This event is called when there is a new LiveUpdate, which sends a json message containing a LiveUpdate object.
 
-```json
+```js
 {
   "ID": number,
   "message": "string",
@@ -89,7 +89,7 @@ This event is called when there is a new LiveUpdate, which sends a json message 
 
 This event is called when a LiveUpdate is deleted, which sends a json message containing the **ID** of deleted LiveUpdate.
 
-```json
+```js
 {
   "ID": number
 }
