@@ -121,7 +121,7 @@ class TestLiveUpdatesBlueprint(BaseTestCase):
         ws_resc = self.wsclient.get_received(namespace="/liveupdates")
 
         self.assertEqual(len(ws_resc), 1)
-        self.assertEqual(ws_resc[0].get("name"), "new")
+        self.assertEqual(ws_resc[0].get("name"), "NewLiveUpdate")
         self.assertEqual(len(ws_resc[0].get("args")), 1)
 
         ws_data = ws_resc[0].get("args")[0].get("data")
@@ -160,7 +160,7 @@ class TestLiveUpdatesBlueprint(BaseTestCase):
 
         ws_resc = self.wsclient.get_received(namespace="/liveupdates")
 
-        self.assertEqual(ws_resc[0].get("name"), "deleteall")
+        self.assertEqual(ws_resc[0].get("name"), "DeleteAllLiveUpdates")
 
     """delete_update"""
     def test_delete_update(self):
@@ -182,7 +182,7 @@ class TestLiveUpdatesBlueprint(BaseTestCase):
 
         ws_resc = self.wsclient.get_received(namespace="/liveupdates")
 
-        self.assertEqual(ws_resc[0].get("name"), "delete")
+        self.assertEqual(ws_resc[0].get("name"), "DeleteLiveUpdate")
         self.assertEqual(ws_resc[0]["args"][0]["data"], "1")
 
     def test_delete_update_not_found(self):
