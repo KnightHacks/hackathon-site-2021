@@ -36,6 +36,6 @@
     },
     {
       "question": "What is the code of conduct for the event?",
-      "answer": "<p>The event uses the MLH code of conduct which can be found <a href=\"https://static.mlh.io/docs/mlh-code-of-conduct.pdf\" class=\"text-blue-600\">here</a>.</p>"
+      "answer": "<p>The event uses the MLH code of conduct which can be found <a href=\"https://static.mlh.io/docs/mlh-code-of-conduct.pdf\" style=\"color: rgb(79, 70, 229);\">here</a>.</p>"
     }
 ]
