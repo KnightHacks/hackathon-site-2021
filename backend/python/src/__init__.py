@@ -117,6 +117,7 @@ def create_app():
     from src.api.categories import categories_blueprint
     from src.api.email_verification import email_verify_blueprint
     from src.api.auth import auth_blueprint
+    from src.api.admin import admin_blueprint
     from src.api.live_updates import live_updates_blueprint
 
     app.register_blueprint(hackers_blueprint, url_prefix="/api")
@@ -128,6 +129,7 @@ def create_app():
     app.register_blueprint(categories_blueprint, url_prefix="/api")
     app.register_blueprint(email_verify_blueprint, url_prefix="/api")
     app.register_blueprint(auth_blueprint, url_prefix="/api")
+    app.register_blueprint(admin_blueprint, url_prefix="/api")
     app.register_blueprint(live_updates_blueprint, url_prefix="/api")
 
     """Register SocketIO Namespaces"""
