@@ -32,7 +32,7 @@
     {
       "question": "404: Question Not Found",
       "answer":
-        "<p>If your question is not listed here, please feel free to reach out to us at team@knighthacks.org or message the Knight Hacks Facebook or Instagram pages.</p>"
+        "<p>If your question is not listed here, please feel free to reach out to us at <a href=\"mailto:eam@knighthacks.org\" style=\"color: rgb(79, 70, 229);\">team@knighthacks.org</a> or message the Knight Hacks Facebook or Instagram pages.</p>"
     },
     {
       "question": "What is the code of conduct for the event?",
