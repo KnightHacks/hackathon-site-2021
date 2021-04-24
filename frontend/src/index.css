@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root > div > .w-full > div > div > div > .float-left > svg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("./assets/borgor.png");
+  animation: cool 1s linear infinite;
+}
+
+#root > div > .w-full > div > div > div > .float-left > svg > path {
+  opacity: 0;
+}
+
+@keyframes cool {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
