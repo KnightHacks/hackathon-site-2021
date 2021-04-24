@@ -82,7 +82,7 @@ const Menu = ({ open, setOpen }) => {
                       <Link
                         to="/"
                         onClick={() => setOpen(false)}
-                        className="focus:outline-none"
+                        className="focus:outline-none focus:ring focus:border-blue-300 px-2"
                       >
                         Home
                       </Link>
@@ -91,7 +91,7 @@ const Menu = ({ open, setOpen }) => {
                       <Link
                         to="/about"
                         onClick={() => setOpen(false)}
-                        className="focus:outline-none"
+                        className="focus:outline-none focus:ring focus:border-blue-300 px-2"
                       >
                         About
                       </Link>
@@ -100,7 +100,7 @@ const Menu = ({ open, setOpen }) => {
                       <Link
                         to="/sponsors"
                         onClick={() => setOpen(false)}
-                        className="focus:outline-none"
+                        className="focus:outline-none focus:ring focus:border-blue-300 px-2"
                       >
                         Sponsors
                       </Link>
@@ -109,7 +109,7 @@ const Menu = ({ open, setOpen }) => {
                       <Link
                         to="/schedule"
                         onClick={() => setOpen(false)}
-                        className="focus:outline-none"
+                        className="focus:outline-none focus:ring focus:border-blue-300 px-2"
                       >
                         Schedule
                       </Link>
@@ -118,7 +118,7 @@ const Menu = ({ open, setOpen }) => {
                       <Link
                         to="/faq"
                         onClick={() => setOpen(false)}
-                        className="focus:outline-none"
+                        className="focus:outline-none focus:ring focus:border-blue-300 px-2"
                       >
                         FAQ
                       </Link>
@@ -127,7 +127,7 @@ const Menu = ({ open, setOpen }) => {
                       <Link
                         to="/register"
                         onClick={() => setOpen(false)}
-                        className="focus:outline-none"
+                        className="focus:outline-none focus:ring focus:border-blue-300 px-2"
                       >
                         Register
                       </Link>
