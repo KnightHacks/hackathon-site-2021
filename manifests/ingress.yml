@@ -1,10 +1,10 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress
+  name: kh-ingress
   annotations:
-    kubernetes.io/incress.class: "nginx"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    kubernetes.io/ingress.class: "nginx"
+    #nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/session-cookie-name: "ingress"
     nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
@@ -14,21 +14,27 @@ metadata:
 spec:
   tls:
   - hosts:
-    - api.knighthacks.org
-    - knighthacks.org
+    - api.dev.torrentofshame.com
+    - dev.torrentofshame.com
     secretName: ingress-tls
   rules:
-  - host: api.knighthacks.org
-    http:
-      paths:
-      - path: /api(/|$)(.*)
-        backend:
-          serviceName: kh-backend
-          servicePort: 5000
-  - host: knighthacks.org
+  - host: api.dev.torrentofshame.com
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: kh-rontend
-          servicePort: 80
+          service:
+            name: kh-backend
+            port:
+              number: 80
+  - host: dev.torrentofshame.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kh-frontend
+            port:
+              number: 80

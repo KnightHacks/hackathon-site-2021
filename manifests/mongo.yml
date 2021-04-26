@@ -11,11 +11,12 @@ spec:
   type: ClusterIP
 ---
 apiVersion: v1
-kind: PersistantVolumeClaim
+kind: PersistentVolumeClaim
 metadata:
-  name: kh-mongo-claim
+  name: kh-mongo-volume
 spec:
-  storageClassName: azureDisk
+  #storageClassName: azureDisk
+  storageClassName: linode-block-storage-retain
   accessModes:
     - ReadWriteOnce
   resources:
@@ -31,8 +32,8 @@ metadata:
 spec:
   volumes:
     - name: kh-mongo-data
-      persistantVolumeClaim:
-        claimName: kh-mongo-claim
+      persistentVolumeClaim:
+        claimName: kh-mongo-volume
   containers:
     - name: kh-mongo
       image: mongo

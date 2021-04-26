@@ -6,27 +6,40 @@ metadata:
     app: kh-backend
 spec:
   ports:
-    - port: 5000
+    - port: 80
+      targetPort: 5000
       protocol: TCP
   selector:
     app: kh-backend
   type: ClusterIP
 ---
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kh-backend-config
+  labels:
+    app: kh-backend
+data:
+  APP_SETTINGS: "src.config.ProductionConfig"
+  MONGO_URI: "mongodb://kh-mongo/hackathon"
+  CELERY_BROKER_URL: "amqp://kh-rabbitmq"
+  MAIL_PORT: "587"
+  MAIL_USE_TLS: "true"
+  MAIL_SERVER: "smtp.knighthacks.org"
+  MAIL_USERNAME: "noreply@knighthacks.org"
+  MAIL_PASSWORD: "supersecurepassword"
+  MAIL_DEFAULT_SENDER: "noreply@knighthacks.org"
+  SECRET_KEY: "viva la pluto"
+---
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: kh-backend
 spec:
   selector:
     matchLabels:
       app: kh-backend
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: kh-backend
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
+  replicas: 1
   template:
     metadata:
       labels:
@@ -34,42 +47,31 @@ spec:
     spec:
       containers:
         - name: kh-backend
-          image: <registry-name>.azurecr.io/backend
+          #image: <registry-name>.azurecr.io/backend
+          image: torrentofshame/kh-backend:v1
           ports:
             - containerPort: 5000
-          env:
-            - name: APP_SETTINGS
-              value: "src.config.ProductionConfig"
-            - name: MONGO_URI
-              value: "mongodb://kh-mongo/hackathon"
-            - name: CELERY_BROKER_URL
-              value: "amqp://kh-rabbitmq"
-            - name: MAIL_PORT
-              value: 587
-            - name: MAIL_USE_TLS
-              value: "true"
-            - name: MAIL_SERVER
-              valueFrom:
-                secretKeyRef:
-                  name: backend-secrets
-                  key: MAIL_SERVER
-            - name: MAIL_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: backend-secrets
-                  key: MAIL_USERNAME
-            - name: MAIL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: backend-secrets
-                  key: MAIL_PASSWORD
-            - name: MAIL_DEFAULT_SENDER
-              valueFrom:
-                secretKeyRef:
-                  name: backend-secrets
-                  key: MAIL_DEFAULT_SENDER
-            - name: SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: backend-secrets
-                  key: SECRET_KEY
+          resources:
+            requests:
+              memory: 50Mi
+              cpu: 50m
+            limits:
+              cpu: 100m
+              memory: 100Mi
+          envFrom:
+          - configMapRef:
+              name: kh-backend-config
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kh-backend
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kh-backend
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50

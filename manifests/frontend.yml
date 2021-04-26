@@ -28,6 +28,7 @@ spec:
     spec:
       containers:
         - name: kh-frontend
-          image: <registry-name>.azurecr.io/frontend
+          #image: <registry-name>.azurecr.io/frontend
+          image: torrentofshame/kh-frontend:v1
           ports:              
             - containerPort: 80

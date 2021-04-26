@@ -9,3 +9,4 @@ coverage.*
 backend/python/Dockerfile.backend.dev
 build
 dist
+cert.*
