@@ -10,4 +10,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 ENTRYPOINT [ "gunicorn" ]
-CMD [ "-b 0.0.0.0:5000", "src:create_app()" ]
+CMD [ "-b 0.0.0.0:5000", "src.__main__:main()" ]

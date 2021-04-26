@@ -10,7 +10,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM nginx:alpine
+FROM nginx:stable-alpine
 COPY --from=dist /home/frontend/app/build /usr/share/nginx/html
 COPY nginx.dev.conf /etc/nginx/nginx.conf
 

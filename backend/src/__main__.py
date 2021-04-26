@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# noqa: E402
 """
     src.__main__
     ~~~~~~~~~~~~
@@ -15,9 +16,11 @@
         test_present
 
 """
-import os
-from flask.cli import FlaskGroup
 from src import app
+from flask.cli import FlaskGroup
+import os
+import eventlet
+eventlet.monkey_patch()
 try:
     import pytest
     test_present = True
