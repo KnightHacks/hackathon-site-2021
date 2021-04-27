@@ -204,7 +204,7 @@ def update_user_profile_settings(username: str):
     if not hacker:
         raise NotFound()
 
-    if update.get("email") != hacker.email:
+    if update.get("email") is not None and update.get("email") != hacker.email:
         update["email_verification"] = False
         newemail = True
     else:
@@ -281,7 +281,7 @@ def hacker_settings(username: str):
 @hackers_blueprint.route("/hackers/<username>/accept/", methods=["PUT"])
 @authenticate
 @privileges(ROLES.ADMIN)
-def accept_hacker(username: str):
+def accept_hacker(_, username: str):
     """
     Accepts a Hacker
     ---
