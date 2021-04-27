@@ -92,14 +92,13 @@ def create_app():
     if app.config.get("DEBUG"):
         environ["FLASK_ENV"] = "development"
         environ["FLASK_DEBUG"] = "1"
-    elif not app.config.get("TESTING"):
+    elif app.config.get("SENTRY_DSN"):
         """Initialize Sentry if we're in production"""
         sentry_sdk.init(
-            dsn=getenv("SENTRY_DSN"),
+            dsn=app.config.get("SENTRY_DSN"),
             integrations=[FlaskIntegration(), CeleryIntegration()],
             traces_sample_rate=1.0
         )
-
 
     """Setup Extensions"""
     CORS(app)

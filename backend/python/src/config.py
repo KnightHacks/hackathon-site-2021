@@ -72,3 +72,4 @@ class TestingConfig(BaseConfig):
 class ProductionConfig(BaseConfig):
     """Production Configuration"""
     DEBUG = False
+    SENTRY_DSN = os.getenv("SENTRY_DSN")
