@@ -47,17 +47,14 @@ spec:
     spec:
       containers:
         - name: kh-backend
-          #image: <registry-name>.azurecr.io/backend
-          image: torrentofshame/kh-backend:v1
+          image: <registry-name>.azurecr.io/backend
           ports:
             - containerPort: 5000
           resources:
             requests:
-              memory: 50Mi
               cpu: 50m
             limits:
               cpu: 100m
-              memory: 100Mi
           envFrom:
           - configMapRef:
               name: kh-backend-config
