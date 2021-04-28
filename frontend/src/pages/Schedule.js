@@ -20,6 +20,7 @@ const Schedule = () => {
               <p className="font-medium text-2xl sm:text-3xl xl:text-4xl my-4">
                 {event.day}
               </p>
+              // Mapping through the content in each events block in JSON
               {event.events.map(function (item, index) {
                 return (
                   <div className="mb-5">
@@ -27,6 +28,7 @@ const Schedule = () => {
                       <span className="font-light"> {item.time} </span>{" "}
                       <span> {item.title} </span>
                     </div>
+                    // Mapping through each string in the tags array in JSON
                     {item.tags.map((tag) => (
                       <span
                         style={{ backgroundColor: hash.hex(tag) }}
