@@ -1,93 +1,31 @@
 [
   {
-    "Friday": [
+    "day": "Friday",
+    "events": [
       {
-        "time": "6:30 PM",
+        "time": " 6:30 PM",
         "title": "Check In",
-        "tags": [""]
+        "tags": ["Beginner", "Tag"]
       },
       {
         "time": "7:00 PM",
         "title": "Dinner",
-        "tags": [""]
-      },
-      {
-        "time": "8:00 PM",
-        "title": "Check In Ends",
-        "tags": [""]
-      },
-      {
-        "time": "8:30 PM",
-        "title": "Opening Ceremonies",
-        "tags": [""]
-      },
-      {
-        "time": "9:30 PM",
-        "title": "Sponsorship Fair",
-        "tags": [""]
-      },
-      {
-        "time": "10:30 PM",
-        "title": "Hacking Begins",
-        "tags": [""]
+        "tags": ["Beginner"]
       }
     ]
   },
   {
-    "Saturday": [
+    "day": "Saturday",
+    "events": [
       {
         "time": "12:00 AM",
         "title": "Midnight Snack",
-        "tags": [""]
+        "tags": ["Beginner"]
       },
       {
-        "time": "8:00 AM - 9:30 AM",
+        "time": "8:00 AM",
         "title": "Breakfast",
-        "tags": [""]
-      },
-      {
-        "time": "1:00 PM - 2:30 PM",
-        "title": "Lunch",
-        "tags": [""]
-      },
-      {
-        "time": "7:00 PM - 8:30 PM",
-        "title": "Dinner",
-        "tags": [""]
-      }
-    ]
-  },
-  {
-    "Sunday": [
-      {
-        "time": "12:00 AM",
-        "title": "Midnight Snack",
-        "tags": [""]
-      },
-      {
-        "time": "7:30 AM - 8:30 AM",
-        "title": "Breakfast",
-        "tags": [""]
-      },
-      {
-        "time": "8:30 AM",
-        "title": "Submissions to Devpost",
-        "tags": [""]
-      },
-      {
-        "time": "10:30 AM",
-        "title": "Hacking ends and Lunch",
-        "tags": [""]
-      },
-      {
-        "time": "11:00 AM - 2:00 PM",
-        "title": "Demo Fair",
-        "tags": [""]
-      },
-      {
-        "time": "2:30 PM - 3:30 PM",
-        "title": "Closing Ceremony",
-        "tags": [""]
+        "tags": ["Beginner"]
       }
     ]
   }
