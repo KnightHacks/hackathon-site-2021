@@ -1,0 +1,3 @@
+[submodule "DiscordBot-New"]
+	path = DiscordBot-New
+	url = git@github.com:KnightHacks/DiscordBot-New.git
