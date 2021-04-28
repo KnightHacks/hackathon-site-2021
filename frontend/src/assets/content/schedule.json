@@ -11,6 +11,26 @@
         "time": "7:00 PM",
         "title": "Dinner",
         "tags": ["Beginner"]
+      },
+      {
+        "time": "8:00 PM",
+        "title": "Check In Ends",
+        "tags": ["General Event"]
+      },
+      {
+        "time": "8:30 PM",
+        "title": "Opening Ceremonies",
+        "tags": ["Social"]
+      },
+      {
+        "time": "9:30 PM",
+        "title": "Sponsorship Fair",
+        "tags": ["Mini-Competition"]
+      },
+      {
+        "time": "10:30 PM",
+        "title": "Hacking Begins",
+        "tags": ["Non-Technical Workshop"]
       }
     ]
   },
@@ -20,12 +40,57 @@
       {
         "time": "12:00 AM",
         "title": "Midnight Snack",
-        "tags": ["Beginner"]
+        "tags": ["Food"]
       },
       {
         "time": "8:00 AM",
         "title": "Breakfast",
+        "tags": ["Food"]
+      },
+      {
+        "time": "1:00 PM",
+        "title": "Lunch",
+        "tags": ["Food"]
+      },
+      {
+        "time": "7:00 PM",
+        "title": "Dinner",
         "tags": ["Beginner"]
+      }
+    ]
+  },
+  {
+    "day": "Sunday",
+    "events": [
+      {
+        "time": "12:00 AM",
+        "title": "Midnight Snack",
+        "tags": ["Food"]
+      },
+      {
+        "time": "7:30 AM",
+        "title": "Breakfast",
+        "tags": ["Food"]
+      },
+      {
+        "time": "8:30 AM",
+        "title": "Submissions to Devpost",
+        "tags": ["General"]
+      },
+      {
+        "time": "10:30 AM",
+        "title": "Hacking Ends! + Lunch",
+        "tags": ["Social", "Food"]
+      },
+      {
+        "time": "11:00 AM",
+        "title": "Demo Fair",
+        "tags": [""]
+      },
+      {
+        "time": "2:30 PM",
+        "title": "Closing Ceremony",
+        "tags": [""]
       }
     ]
   }
