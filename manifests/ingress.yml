@@ -4,21 +4,22 @@ metadata:
   name: kh-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    #nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/session-cookie-name: "ingress"
     nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
     nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
     nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^([^.?]*[^/])$ $1/ redirect;
 
 spec:
   tls:
   - hosts:
-    - api.dev.torrentofshame.com
-    - dev.torrentofshame.com
+    - api.knighthacks.org
+    - knighthacks.org
     secretName: ingress-tls
   rules:
-  - host: api.dev.torrentofshame.com
+  - host: api.knighthacks.org
     http:
       paths:
       - path: /
@@ -28,7 +29,7 @@ spec:
             name: kh-backend
             port:
               number: 80
-  - host: dev.torrentofshame.com
+  - host: knighthacks.org
     http:
       paths:
       - path: /
