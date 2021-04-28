@@ -30,7 +30,7 @@ const Schedule = () => {
                     {item.tags.map((tag) => (
                       <span
                         style={{ backgroundColor: hash.hex(tag) }}
-                        className="font-light rounded-full px-2 py-1 mr-2 text-gray-600 font-regular"
+                        className="font-light rounded-full px-2 py-1 mr-2 text-gray-600"
                       >
                         {tag}
                       </span>
