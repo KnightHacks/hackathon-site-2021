@@ -59,16 +59,26 @@ jobs:
       with:
         namespace: ${{ env.NAMESPACE }}
         secret-type: 'generic'
-        secret-name: backend-secrets
+        secret-name: kh-backend-secret
         arguments: 
           --from-literal=MAIL_SERVER=${{ secrets.MAIL_SERVER }} --from-literal=MAIL_USERNAME=${{ secrets.MAIL_USERNAME }} --from-literal=MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }} --from-literal=MAIL_DEFAULT_SENDER=${{ secrets.MAIL_DEFAULT_SENDER }} --from-literal=SECRET_KEY=${{ secrets.SECRET_KEY }}
-    
+  
+    # Create secret for discordbot environment variables
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: ${{ env.NAMESPACE }}
+        secret-type: 'generic'
+        secret-name: kh-discordbot-secret
+        arguments: 
+          --from-literal=DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }} --from-literal=REDDIT_API_KEY=${{ secrets.REDDIT_API_KEY }} --from-literal=REDDIT_CLIENT_ID=${{ secrets.REDDIT_CLIENT_ID }} --from-literal=REDDIT_USER_AGENT=${{ secrets.REDDIT_USER_AGENT }} --from-literal=WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }}
+  
     # Deploy app to AKS
     - uses: azure/k8s-deploy@v1
       with:
         manifests: |
           manifests/backend.yml
           manifests/frontend.yml
+          manifests/discordbot.yml
           manifests/mongo.yml
           manifests/ingress.yml
           manifests/rabbitmq.yml
