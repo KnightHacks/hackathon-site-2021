@@ -9,3 +9,7 @@ pyjwt
 Flask-Mail
 celery
 Flask-Bcrypt
+Flask-SocketIO
+kombu
+gunicorn
+eventlet
