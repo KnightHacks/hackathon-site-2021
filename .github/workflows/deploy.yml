@@ -32,6 +32,8 @@ jobs:
         docker push ${{ env.REGISTRY_NAME }}.azurecr.io/frontend:${{ github.sha }}
         docker build ./backend -t ${{ env.REGISTRY_NAME }}.azurecr.io/backend:${{ github.sha }}
         docker push ${{ env.REGISTRY_NAME }}.azurecr.io/backend:${{ github.sha }}
+        docker build ./DiscordBot-New -t ${{ env.REGISTRY_NAME }}.azurecr.io/discordbot:${{ github.sha }}
+        docker push ${{ env.REGISTRY_NAME }}.azurecr.io/discordbot:${{ github.sha }}
     
     # Set the target Azure Kubernetes Service (AKS) cluster. 
     - uses: azure/aks-set-context@v1
