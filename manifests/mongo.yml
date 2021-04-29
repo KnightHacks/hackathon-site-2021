@@ -15,8 +15,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: kh-mongo-volume
 spec:
-  #storageClassName: azureDisk
-  storageClassName: linode-block-storage-retain
+  storageClassName: azureDisk
   accessModes:
     - ReadWriteOnce
   resources:

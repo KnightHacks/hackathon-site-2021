@@ -53,7 +53,7 @@ spec:
           envFrom:
           - configMapRef:
               name: kh-backend-config
-          - secretKeyRef:
+          - secretRef:
               name: kh-backend-secret
 ---
 apiVersion: autoscaling/v1

@@ -1,18 +1,4 @@
 apiVersion: v1
-kind: Service
-metadata:
-  name: kh-discordbot
-  labels:
-    app: kh-discordbot
-spec:
-  ports:
-    - port: 80
-      protocol: TCP
-  selector:
-    app: kh-discordbot
-  type: ClusterIP
----
-apiVersion: v1
 kind: ConfigMap
 metadata:
   name: kh-discordbot-config
@@ -44,10 +30,8 @@ spec:
       containers:
         - name: kh-discordbot
           image: <registry-name>.azurecr.io/discordbot
-          ports:              
-            - containerPort: 80
           envFrom:
           - configMapRef:
               name: kh-discordbot-config
-          - secretKeyRef:
+          - secretRef:
               name: kh-discordbot-secret
