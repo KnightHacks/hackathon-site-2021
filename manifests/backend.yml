@@ -25,11 +25,6 @@ data:
   CELERY_BROKER_URL: "amqp://kh-rabbitmq"
   MAIL_PORT: "587"
   MAIL_USE_TLS: "true"
-  MAIL_SERVER: "smtp.knighthacks.org"
-  MAIL_USERNAME: "noreply@knighthacks.org"
-  MAIL_PASSWORD: "supersecurepassword"
-  MAIL_DEFAULT_SENDER: "noreply@knighthacks.org"
-  SECRET_KEY: "viva la pluto"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -58,6 +53,8 @@ spec:
           envFrom:
           - configMapRef:
               name: kh-backend-config
+          - secretKeyRef:
+              name: kh-backend-secret
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler

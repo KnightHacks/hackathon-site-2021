@@ -48,6 +48,29 @@ services:
             - kh-backend
         ports:
             - 8080:80
+
+    kh-discordbot:
+        image: knighthacks/discordbot
+        build: 
+            context: ./DiscordBot-New
+            dockerfile: Dockerfile
+        container_name: kh-discordbot
+        restart: unless-stopped
+        depends_on:
+            - kh-backend
+        environment:
+            DISCORD_TOKEN: ""
+            DISCORD_GUILD: ""
+            START_ROLE: ""
+            KNIGHTHACKS: ""
+            CODE_MESSAGE: ""
+            LOGGING_CHANNEL_ID: ""
+            REDDIT_API_KEY: ""
+            REDDIT_CLIENT_ID: ""
+            REDDIT_USER_AGENT: ""
+            KH_SERVER_ID: ""
+            KH_HACKER_ROLE: ""
+            WEATHER_API_KEY: ""
             
 volumes:
     mongo-hackathon-data:
