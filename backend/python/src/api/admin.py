@@ -67,7 +67,7 @@ def create_hacker(loggedin_user):
         data["hacker_profile"][f] = data.pop(f, None)
 
     try:
-        hacker = Hacker.createOne(**data, roles=ROLES.HACKER, isaccepted=True,
+        Hacker.createOne(**data, roles=ROLES.HACKER, isaccepted=True,
                                   email_verification=True)
 
     except NotUniqueError:
@@ -124,7 +124,7 @@ def create_sponsor(loggedin_user):
         app.config["BCRYPT_LOG_ROUNDS"])
 
     try:
-        sponsor = Sponsor.createOne(**data, roles=ROLES.SPONSOR,
+        Sponsor.createOne(**data, roles=ROLES.SPONSOR,
                                     email_verification=True)
     except NotUniqueError:
         raise Conflict("Sorry, this sponsor already exists.")
