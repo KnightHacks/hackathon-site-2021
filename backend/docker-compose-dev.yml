@@ -18,7 +18,7 @@ services:
     kh-backend:
         image: knighthacks/backend
         build:
-            context: ./python
+            context: .
             dockerfile: Dockerfile.dev
         container_name: kh-backend
         restart: unless-stopped
@@ -32,7 +32,7 @@ services:
         environment:
             APP_SETTINGS: src.config.DevelopmentConfig
             MONGO_URI: "mongodb://kh-mongo/test"
-            RABBITMQ_URL: "amqp://kh-rabbitmq"
+            CELERY_BROKER_URL: "amqp://kh-rabbitmq"
             MAIL_SERVER: "smtp.knighthacks.org"
             MAIL_PORT: 587
             MAIL_USE_TLS: "true"
