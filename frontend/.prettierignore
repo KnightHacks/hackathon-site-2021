@@ -1,0 +1,4 @@
+# Don't reformat the build
+node_modules/
+.cache/
+public/

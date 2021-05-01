@@ -1,0 +1,76 @@
+version: "3.9"
+services:
+
+    kh-rabbitmq:
+        image: rabbitmq
+        container_name: kh-rabbitmq
+        restart: unless-stopped
+
+    kh-mongo:
+        image: mongo
+        container_name: kh-mongo
+        restart: unless-stopped
+        volumes:
+            - mongo-hackathon-data:/data/db
+            
+    kh-backend:
+        image: knighthacks/backend
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        container_name: kh-backend
+        restart: unless-stopped
+        depends_on:
+            - kh-mongo
+            - kh-rabbitmq
+        volumes:
+            - ./backend:/home/backend/app
+        environment:
+            APP_SETTINGS: src.config.ProductionConfig
+            MONGO_URI: "mongodb://kh-mongo/hackathon"
+            CELERY_BROKER_URL: "amqp://kh-rabbitmq"
+            MAIL_SERVER: "smtp.knighthacks.org"
+            MAIL_PORT: 587
+            MAIL_USE_TLS: "true"
+            MAIL_USERNAME: "noreply@knighthacks.org"
+            MAIL_PASSWORD: "supersecurepassworddontatme"
+            MAIL_DEFAULT_SENDER: "noreply@knighthacks.org"
+            SECRET_KEY: "vivalapluto"
+
+    kh-frontend:
+        image: knighthacks/frontend
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile.dev
+        container_name: kh-frontend
+        restart: unless-stopped
+        depends_on:
+            - kh-backend
+        ports:
+            - 8080:80
+
+    kh-discordbot:
+        image: knighthacks/discordbot
+        build: 
+            context: ./DiscordBot-New
+            dockerfile: Dockerfile
+        container_name: kh-discordbot
+        restart: unless-stopped
+        depends_on:
+            - kh-backend
+        environment:
+            DISCORD_TOKEN: ""
+            DISCORD_GUILD: ""
+            START_ROLE: ""
+            KNIGHTHACKS: ""
+            CODE_MESSAGE: ""
+            LOGGING_CHANNEL_ID: ""
+            REDDIT_API_KEY: ""
+            REDDIT_CLIENT_ID: ""
+            REDDIT_USER_AGENT: ""
+            KH_SERVER_ID: ""
+            KH_HACKER_ROLE: ""
+            WEATHER_API_KEY: ""
+            
+volumes:
+    mongo-hackathon-data:
