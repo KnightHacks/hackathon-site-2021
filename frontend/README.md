@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+<h1 align="center">
+  2021 Knight Hacks Hackathon Site
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository is the source code for the 2021 Fall hackathon source code.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+```shell
+git clone https://github.com/KnightHacks/hackathon-site-2021.git
+cd frontend
+npm install
+```
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To run a live development server, run the following in a terminal:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```shell
+cd frontend
+npm start
+```
 
-### `npm test`
+This will host the website at http://localhost:8000. As you make updates to the
+code, the development server will automatically reload the page.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+If you get errors, try running `npm install` (make sure you're in the
+`frontend/` directory before you do this). Different branches might have
+different dependencies installed, so running a fresh `npm install` after each
+branch switch is advisable.
 
-### `npm run build`
+## Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This repository has both the frontend and backend code. This README discusses
+the frontend code.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The project is a basic `create-react-app`. The root file is
+`frontend/src/App.js`, but most of the actual logic lives in various files in
+`frontend/src/pages/` and `frontend/src/components/`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+CSS is mostly handled with Tailwind CSS, with some custom vanilla CSS here and
+there.
 
-### `npm run eject`
+## Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### React
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In order to be able to work on this project, you'll need to be familiar with
+React. React is a UI rendering library that is essentially a way to embed HTML
+in your JavaScript, which gives enables for powerful, programmatic control over
+the UI on the page. If you're not familiar with HTML, CSS, and JavaScript, you
+should learn those first so that React makes more sense.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Docs: https://reactjs.org/docs/getting-started.html
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Tailwind CSS
 
-## Learn More
+Tailwind CSS is a CSS utility library. It provides useful prebuilt CSS classes
+that enable simple and effective styling without dealing with separate
+stylesheets. Tailwind CSS also provides responsive variants of classes to make
+it easier to build a webpage that adapts to any screen size. It feels most like
+inline CSS styles in regular HTML.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Docs: https://tailwindcss.com/
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Ripples
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+We are considering incorporating https://github.com/sirxemic/jquery.ripples to
+the project later.

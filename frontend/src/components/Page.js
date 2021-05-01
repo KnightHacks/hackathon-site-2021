@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Menu from "./Menu";
-
+import { Link } from "react-router-dom";
 /**
  * @desc Renders template layout for all pages
  * @param Takes the children JSX elements and a boolean value thats true if the current page is the Landing page
@@ -25,8 +25,12 @@ const Page = ({ children, onLanding }) => {
         {children}
       </div>
 
-      <div className={"col-span-1 w-full " + (open ? "filter blur-md" : "")}>
-        {/* onLanding ? render smaller logo on right : don't render smaller logo */}
+      <div className="col-span-1 w-full">
+        {!onLanding ? (
+          <Link to="/">
+            <div className="bg-knight-hacks-logo bg-no-repeat bg-center w-11/12 h-16 sm:h-32 mt-12 hidden sm:block" />
+          </Link>
+        ) : null}
       </div>
     </div>
   );
