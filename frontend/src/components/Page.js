@@ -21,17 +21,15 @@ const Page = ({ children, onLanding }) => {
         <Menu open={open} setOpen={setOpen} />
       </div>
 
-      <div className="sm:col-span-3 text-white w-full-with-margins h-full bg-landing-transparent rounded-2xl">
+      <div className="sm:col-span-3 text-white w-full-with-margins h-full bg-landing-transparent rounded-2xl overflow-y-auto">
         {children}
       </div>
 
-      <div className="col-span-1 w-full">
-        {!onLanding ? (
-          <Link to="/">
-            <div className="bg-knight-hacks-logo bg-no-repeat bg-center w-11/12 h-16 sm:h-32 mt-12 hidden sm:block" />
-          </Link>
-        ) : null}
-      </div>
+        <Link to="/" className="col-span-1 w-full">
+          {!onLanding ? (
+              <div className="bg-knight-hacks-logo bg-no-repeat bg-center w-11/12 h-16 sm:h-32 mt-12 hidden sm:block" />
+          ) : null}
+        </Link>
     </div>
   );
 };
