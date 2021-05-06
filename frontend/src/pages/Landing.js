@@ -1,4 +1,3 @@
-import { FaTwitter, FaInstagram, FaFacebookF } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Page from "../components/Page";
 
@@ -10,8 +9,7 @@ import Page from "../components/Page";
 const Landing = () => {
   return (
     <Page onLanding={true}>
-      <div className="flex justify-center items-center flex-col w-full h-full">
-        <div className="flex justify-center items-center flex-col w-full h-full">
+        <div className="flex justify-center items-center flex-col w-full mt-auto">
           <h1 className="text-3xl md:text-4xl lg:text-5xl w-full text-center">
             Welcome to
           </h1>
@@ -28,18 +26,6 @@ const Landing = () => {
             </p>
           </Link>
         </div>
-        <div className="flex flex-row mt-auto mb-8 space-x-8  text-4xl sm:text-5xl md:text-6xl">
-          <a href="https://twitter.com/KnightHacks?lang=en/">
-            <FaTwitter className="border-4 border-white rounded-xl p-2 hover:bg-blue-400" />
-          </a>
-          <a href="https://www.instagram.com/knighthacks/">
-            <FaInstagram className="border-4 border-white rounded-xl p-2 hover:bg-blue-400" />
-          </a>
-          <a href="https://www.facebook.com/KnightHacks/">
-            <FaFacebookF className="border-4 border-white rounded-xl p-2 hover:bg-blue-400" />
-          </a>
-        </div>
-      </div>
     </Page>
   );
 };
