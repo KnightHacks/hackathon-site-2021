@@ -21,7 +21,7 @@ const Page = ({ children, onLanding }) => {
         <Menu open={open} setOpen={setOpen} />
       </div>
 
-      <div className="sm:col-span-3 text-white w-full-with-margins h-full bg-landing-transparent rounded-2xl">
+      <div className="sm:col-span-3 text-white w-full-with-margins h-full bg-landing-transparent rounded-2xl overflow-y-auto">
         {children}
       </div>
 
