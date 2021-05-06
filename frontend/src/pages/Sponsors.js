@@ -37,6 +37,21 @@ const Sponsors = () => {
           src={TestLogo}
           alt="test logo"
         />
+        <img
+          className="w-2/3 xl:w-96 ml-36 mt-20"
+          src={TestLogo}
+          alt="test logo"
+        />
+        <img
+          className="w-2/3 xl:w-96 mr-36 mt-20 transform rotate-180"
+          src={TestLogo}
+          alt="test logo"
+        />
+        <img
+          className="w-2/3 xl:w-96 ml-36 mt-20"
+          src={TestLogo}
+          alt="test logo"
+        />
       </div>
     </Page>
   );
