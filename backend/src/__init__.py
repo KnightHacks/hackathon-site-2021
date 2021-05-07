@@ -93,8 +93,8 @@ def create_app():
 
     """Set FLASK_ENV and FLASK_DEBUG cause that doesn't happen auto anymore"""
     if app.config.get("DEBUG"):
-        environ["FLASK_ENV"] = "development"
-        environ["FLASK_DEBUG"] = "1"
+        environ["FLASK_ENV"] = "development"  # pragma: nocover
+        environ["FLASK_DEBUG"] = "1"  # pragma: nocover
     elif app.config.get("SENTRY_DSN"):
         """Initialize Sentry if we're in production"""
         sentry_sdk.init(

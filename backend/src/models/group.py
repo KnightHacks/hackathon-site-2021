@@ -20,4 +20,4 @@ class Group(BaseDocument):
     icon = db.StringField()
     members = db.ListField(db.ReferenceField(Hacker))
     categories = db.ListField(db.StringField())
-    date = db.DateTimeField(default=datetime.now)
+    date = db.DateTimeField(default=datetime.utcnow)

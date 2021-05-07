@@ -211,7 +211,11 @@ def edit_sponsor(sponsor_name: str):
     return res, 201
 
 
+<<<<<<< HEAD:backend/src/api/sponsor.py
 @sponsors_blueprint.put("/sponsors/<username>/accept/")
+=======
+@sponsors_blueprint.route("/sponsors/<username>/accept/", methods=["PUT"])
+>>>>>>> cbc4e5b214b9db23663bf74da851d53a98c04560:backend/src/api/sponsor.py
 @authenticate
 @privileges(ROLES.ADMIN)
 def accept_sponsor(_, username: str):
