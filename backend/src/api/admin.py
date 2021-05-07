@@ -68,7 +68,7 @@ def create_hacker(loggedin_user):
 
     try:
         Hacker.createOne(**data, roles=ROLES.HACKER, isaccepted=True,
-                                  email_verification=True)
+                         email_verification=True)
 
     except NotUniqueError:
         raise Conflict("Sorry, that username or email already exists.")
@@ -125,7 +125,7 @@ def create_sponsor(loggedin_user):
 
     try:
         Sponsor.createOne(**data, roles=ROLES.SPONSOR,
-                                    email_verification=True)
+                          email_verification=True)
     except NotUniqueError:
         raise Conflict("Sorry, this sponsor already exists.")
     except ValidationError:
