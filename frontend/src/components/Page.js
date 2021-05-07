@@ -23,8 +23,8 @@ const Page = ({ children, onLanding }) => {
         <Menu open={open} setOpen={setOpen} />
       </div>
 
-      <div className="sm:col-span-3 text-white w-full-with-margins h-full bg-landing-transparent rounded-2xl overflow-y-auto">
-        <div className="flex justify-center items-center flex-col w-full h-full">
+      <div className="sm:col-span-3 text-white w-full-with-margins h-full bg-landing-transparent rounded-2xl">
+        <div className="flex items-center flex-col w-full h-full overflow-y-auto">
           {children}
           <div className="flex flex-row w-full justify-center mb-8 space-x-8 text-4xl sm:text-5xl md:text-6xl mt-auto">
             <a href="https://twitter.com/KnightHacks?lang=en/">
