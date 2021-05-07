@@ -52,7 +52,7 @@ services:
     kh-discordbot:
         image: knighthacks/discordbot
         build: 
-            context: ./DiscordBot-New
+            context: ./discordbot
             dockerfile: Dockerfile
         container_name: kh-discordbot
         restart: unless-stopped
