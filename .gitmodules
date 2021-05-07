@@ -1,4 +1,4 @@
-[submodule "DiscordBot-New"]
-	path = DiscordBot-New
+[submodule "discordbot"]
+	path = discordbot
 	url = ../DiscordBot-New.git
-	branch = main
+    branch = main
