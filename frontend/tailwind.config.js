@@ -4,7 +4,10 @@ module.exports = {
   theme: {
     extend: {
       width: {
-        "full-with-margins": "calc(100% - 30px)",
+        "19/20": "95%",
+      },
+      height: {
+        "19/20": "95%",
       },
       backgroundImage: (theme) => ({
         "koi-fish-pond": "url('/src/assets/KoiFishPond.png')",
