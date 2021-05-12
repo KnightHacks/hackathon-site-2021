@@ -19,12 +19,12 @@ const Page = ({ children, onLanding }) => {
         (open ? "filter blur-md" : "")
       }
     >
-      <div className="sm:col-span-1 w-full sm:h-full">
+      <div className="sm:col-span-1 w-full h-3/20 sm:h-full">
         <Menu open={open} setOpen={setOpen} />
       </div>
 
-      <div className="sm:col-span-3 text-white w-full h-full flex justify-center items-center">
-        <div className="flex items-center w-19/20 h-19/20 bg-landing-transparent rounded-2xl flex-col overflow-y-auto">
+      <div className="sm:col-span-3 text-white w-19/20 h-17/20 sm:h-19/20 flex justify-center sm:items-center">
+        <div className="flex items-center w-full h-19/20 sm:h-full bg-landing-transparent rounded-2xl flex-col overflow-y-auto">
           {children}
           <div className="flex flex-row w-full justify-center mb-8 space-x-8 text-4xl sm:text-5xl md:text-6xl mt-auto">
             <a href="https://twitter.com/KnightHacks?lang=en/">
