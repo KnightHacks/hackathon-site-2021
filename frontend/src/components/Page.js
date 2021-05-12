@@ -15,16 +15,16 @@ const Page = ({ children, onLanding }) => {
   return (
     <div
       className={
-        "bg-koi-fish-pond bg-no-repeat bg-cover w-full h-screen flex flex-col items-center sm:items-start sm:grid sm:grid-cols-5 sm:grid-rows-1 sm:grid-flow-col sm:gap-0 " +
+        "bg-koi-fish-pond bg-no-repeat bg-cover w-full h-screen flex flex-col items-center sm:items-center sm:grid sm:grid-cols-5 sm:grid-rows-1 sm:grid-flow-col sm:gap-0 " +
         (open ? "filter blur-md" : "")
       }
     >
-      <div className="sm:col-span-1 w-full">
+      <div className="sm:col-span-1 w-full h-3/20 sm:h-full">
         <Menu open={open} setOpen={setOpen} />
       </div>
 
-      <div className="sm:col-span-3 text-white w-full-with-margins h-full bg-landing-transparent rounded-2xl overflow-y-auto">
-        <div className="flex justify-center items-center flex-col w-full h-full">
+      <div className="sm:col-span-3 text-white w-19/20 h-17/20 sm:h-19/20 flex justify-center sm:items-center">
+        <div className="flex items-center w-full h-19/20 sm:h-full bg-landing-transparent rounded-2xl flex-col overflow-y-auto">
           {children}
           <div className="flex flex-row w-full justify-center mb-8 space-x-8 text-4xl sm:text-5xl md:text-6xl mt-auto">
             <a href="https://twitter.com/KnightHacks?lang=en/">
@@ -40,10 +40,10 @@ const Page = ({ children, onLanding }) => {
         </div>
       </div>
 
-      <div className="col-span-1 w-full">
+      <div className="col-span-1 w-full h-full hidden sm:flex sm:h-full sm:justify-center">
         {!onLanding ? (
-          <Link to="/">
-            <div className="bg-knight-hacks-logo bg-no-repeat bg-center w-11/12 h-16 sm:h-32 mt-12 hidden sm:block" />
+          <Link to="/" className="w-11/12 h-16">
+            <div className="bg-knight-hacks-logo bg-no-repeat bg-center w-full h-full sm:h-32 mt-12" />
           </Link>
         ) : null}
       </div>

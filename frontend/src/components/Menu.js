@@ -49,10 +49,10 @@ const Menu = ({ open, setOpen }) => {
               <Dialog.Overlay className="fixed inset-0 bg-menu-transparent" />
             </Transition.Child>
 
-            <div className="inline-block px-6 pt-6 mt-8 text-left align-middle transition-all transform">
+            <div className="sm:inline-block px-6 pt-6 mt-8 text-left align-middle transition-all transform">
               <Dialog.Title
                 as="div"
-                className="leading-6 text-white flex flex-row sm:space-x-8"
+                className="leading-6 text-white flex flex-row sm:space-x-8 w-full"
               >
                 <CgMenu
                   className="text-4xl md:text-5xl cursor-pointer"
