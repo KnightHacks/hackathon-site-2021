@@ -23,32 +23,32 @@ const Sponsors = () => {
       </h1>
       <div className="flex flex-col flex-wrap content-center">
         <img
-          className="w-2/3 xl:w-96 ml-36 mt-20"
+          className="w-2/3 xl:w-96 ml-36 my-10"
           src={TestLogo}
           alt="test logo"
         />
         <img
-          className="w-2/3 xl:w-96 mr-36 mt-20 transform rotate-180"
+          className="w-2/3 xl:w-96 mr-36 my-10 transform rotate-180"
           src={TestLogo}
           alt="test logo"
         />
         <img
-          className="w-2/3 xl:w-96 ml-36 mt-20"
+          className="w-2/3 xl:w-96 ml-36 my-10"
           src={TestLogo}
           alt="test logo"
         />
         <img
-          className="w-2/3 xl:w-96 ml-36 mt-20"
+          className="w-2/3 xl:w-96 ml-36 my-10"
           src={TestLogo}
           alt="test logo"
         />
         <img
-          className="w-2/3 xl:w-96 mr-36 mt-20 transform rotate-180"
+          className="w-2/3 xl:w-96 mr-36 my-10 transform rotate-180"
           src={TestLogo}
           alt="test logo"
         />
         <img
-          className="w-2/3 xl:w-96 ml-36 mt-20"
+          className="w-2/3 xl:w-96 ml-36 my-10"
           src={TestLogo}
           alt="test logo"
         />
