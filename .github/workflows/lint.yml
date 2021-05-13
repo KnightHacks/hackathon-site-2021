@@ -24,6 +24,8 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - name: Setup
+        run: cd frontend
       - name: Install Dependencies
         run: npm ci
       - name: Run Linter
