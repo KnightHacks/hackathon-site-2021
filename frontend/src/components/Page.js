@@ -7,7 +7,6 @@ import Menu from "./Menu";
  * @author Abraham Hernandez
  */
 
-
 const Page = ({ children, onLanding }) => {
   const [open, setOpen] = useState(false);
 
