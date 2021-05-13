@@ -1,5 +1,5 @@
 import Page from "../components/Page";
-import Content from "../assets/content/schedule.json";
+import content from "../assets/content/schedule.json";
 import ColorHash from "color-hash";
 
 /**
@@ -14,7 +14,7 @@ const Schedule = () => {
         <h1 className="my-10 justify-self-center text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
           Schedule
         </h1>
-        {Content.map((event) => {
+        {content.map((event) => {
           return (
             <div className="ml-24">
               <p className="font-medium text-2xl sm:text-3xl xl:text-4xl my-4">
