@@ -5,9 +5,17 @@ name: Linter
 
 on:
   push:
+    paths:
+      - '**.js' 
     branches: [ main ]
   pull_request:
+    paths:
+      - '**.js'
     branches: [ main ]
+
+defaults:
+  run:
+    working-directory: frontend/
     
 jobs:
   Lint:
@@ -25,6 +33,6 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Install Dependencies
-        run: cd frontend && npm ci
+        run: npm ci
       - name: Run Linter
-        run: cd frontend && npm run lint
+        run: npm run lint
