@@ -15,7 +15,7 @@ const Page = ({ children, onLanding }) => {
   return (
     <div
       className={
-        "bg-koi-fish-pond bg-no-repeat bg-cover w-full h-screen flex flex-col items-center sm:items-center sm:grid sm:grid-cols-5 sm:grid-rows-1 sm:grid-flow-col sm:gap-0 " +
+        "absolute bg-koi-fish-pond bg-no-repeat bg-cover w-full h-screen flex flex-col items-center sm:items-center sm:grid sm:grid-cols-5 sm:grid-rows-1 sm:grid-flow-col sm:gap-0 " +
         (open ? "filter blur-md" : "")
       }
     >
@@ -36,7 +36,7 @@ const Page = ({ children, onLanding }) => {
             <a href="https://www.facebook.com/KnightHacks/">
               <FaFacebookF className="border-4 border-white rounded-xl p-2 hover:bg-blue-400" />
             </a>
-          </div>        
+          </div>
         </div>
       </div>
 
