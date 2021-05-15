@@ -2,3 +2,7 @@
 	path = DiscordBot-New
 	url = ../DiscordBot-New.git
 	branch = main
+[submodule "backend"]
+	path = backend
+	url = ../hackathon-2021-backend.git
+	branch = main
