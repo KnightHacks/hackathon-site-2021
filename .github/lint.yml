@@ -6,11 +6,11 @@ name: Linter
 on:
   push:
     paths:
-      - '**.js' 
+      - '**/*.js"' 
     branches: [ main ]
   pull_request:
     paths:
-      - '**.js'
+      - '**/*.js"'
     branches: [ main ]
 
 defaults:
