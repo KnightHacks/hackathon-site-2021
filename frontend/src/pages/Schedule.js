@@ -6,8 +6,9 @@ import ColorHash from "color-hash";
  * @desc Displays Schedule using formatted events from JSON
  * @author Aileen
  */
+
+const hash = new ColorHash({ lightness: 0.8 });
 const Schedule = () => {
-  const hash = new ColorHash({ lightness: 0.8 });
   return (
     <Page onLanding={true}>
       <div className="grid w-full flex-col my-4 md:my-12">
