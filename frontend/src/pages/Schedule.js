@@ -15,9 +15,9 @@ const Schedule = () => {
         <h1 className="my-10 justify-self-center text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
           Schedule
         </h1>
-        {content.map((event) => {
+        {content.map((event, index) => {
           return (
-            <div className="ml-24">
+            <div key={index} className="ml-24">
               <p className="font-medium text-2xl sm:text-3xl xl:text-4xl my-4">
                 {event.day}
               </p>
