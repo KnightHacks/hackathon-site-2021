@@ -6,3 +6,7 @@
 	path = backend
 	url = ../hackathon-2021-backend.git
 	branch = main
+[submodule "frontend"]
+	path = frontend
+	url = ../hackathon-2021-frontend
+	branch = main
